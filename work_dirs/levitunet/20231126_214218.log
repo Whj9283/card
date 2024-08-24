@@ -1,0 +1,1672 @@
+2023-11-26 21:42:18,821 - mmseg - INFO - Multi-processing start method is `None`
+2023-11-26 21:42:18,823 - mmseg - INFO - OpenCV num_threads is `6
+2023-11-26 21:42:18,881 - mmseg - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.8.18 (default, Sep 11 2023, 13:40:15) [GCC 11.2.0]
+CUDA available: True
+GPU 0: NVIDIA GeForce RTX 3090
+CUDA_HOME: /environment/miniconda3
+NVCC: Cuda compilation tools, release 11.8, V11.8.89
+GCC: gcc (Ubuntu 9.3.0-17ubuntu1~20.04) 9.3.0
+PyTorch: 1.11.0+cu113
+PyTorch compiling details: PyTorch built with:
+  - GCC 7.3
+  - C++ Version: 201402
+  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.5.2 (Git Hash a9302535553c73243c632ad3c4c80beec3d19a1e)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 11.3
+  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86
+  - CuDNN 8.2
+  - Magma 2.5.2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.3, CUDNN_VERSION=8.2.0, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.11.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=OFF, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+TorchVision: 0.12.0+cu113
+OpenCV: 4.8.1
+MMCV: 1.7.0
+MMCV Compiler: GCC 9.3
+MMCV CUDA Compiler: 11.3
+MMSegmentation: 0.29.1+
+------------------------------------------------------------
+
+2023-11-26 21:42:18,881 - mmseg - INFO - Distributed training: False
+2023-11-26 21:42:19,081 - mmseg - INFO - Config:
+norm_cfg = dict(type='SyncBN', requires_grad=True)
+backbone_norm_cfg = dict(type='LN', requires_grad=True)
+model = dict(
+    type='EncoderDecoderFull',
+    decode_head=dict(
+        type='LevitUnet',
+        loss_decode=[
+            dict(
+                type='FocalLoss',
+                use_sigmoid=True,
+                gamma=2.0,
+                alpha=0.25,
+                class_weight=[0.1, 0.5, 0.2, 0.2],
+                loss_weight=2.0),
+            dict(
+                type='DiceLoss',
+                loss_name='loss_dice',
+                class_weight=[0.1, 0.5, 0.2, 0.2],
+                loss_weight=2.0)
+        ]))
+train_cfg = dict()
+test_cfg = dict(mode='whole')
+dataset_type = 'MyDataset'
+crop_size = (512, 512)
+train_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(type='LoadAnnotations'),
+    dict(type='Resize', img_scale=(600, 600)),
+    dict(type='RandomCrop', crop_size=(512, 512), cat_max_ratio=0.75),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(type='PhotoMetricDistortion'),
+    dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
+    dict(type='Pad', size=(512, 512), pad_val=0, seg_pad_val=255),
+    dict(type='DefaultFormatBundle'),
+    dict(type='Collect', keys=['img', 'gt_semantic_seg'])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(512, 512),
+        flip=False,
+        transforms=[
+            dict(type='Resize', keep_ratio=False),
+            dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+data_root = './datasets/'
+data = dict(
+    samples_per_gpu=8,
+    workers_per_gpu=2,
+    train=dict(
+        type='MyDataset',
+        data_root='./datasets/',
+        img_dir='train/images',
+        ann_dir='train/labels',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(type='LoadAnnotations'),
+            dict(type='Resize', img_scale=(600, 600)),
+            dict(type='RandomCrop', crop_size=(512, 512), cat_max_ratio=0.75),
+            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(type='PhotoMetricDistortion'),
+            dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
+            dict(type='Pad', size=(512, 512), pad_val=0, seg_pad_val=255),
+            dict(type='DefaultFormatBundle'),
+            dict(type='Collect', keys=['img', 'gt_semantic_seg'])
+        ]),
+    val=dict(
+        type='MyDataset',
+        data_root='./datasets/',
+        img_dir='test/images',
+        ann_dir='test/labels',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(512, 512),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=False),
+                    dict(
+                        type='Normalize',
+                        mean=[0, 0, 0],
+                        std=[1, 1, 1],
+                        to_rgb=True),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]),
+    test=dict(
+        type='MyDataset',
+        data_root='./datasets/',
+        img_dir='test/images',
+        ann_dir='test/labels',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(512, 512),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=False),
+                    dict(
+                        type='Normalize',
+                        mean=[0, 0, 0],
+                        std=[1, 1, 1],
+                        to_rgb=True),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]))
+log_config = dict(
+    interval=50,
+    hooks=[
+        dict(type='TensorboardLoggerHook'),
+        dict(type='TextLoggerHook', by_epoch=False)
+    ])
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = None
+resume_from = None
+workflow = [('train', 1)]
+cudnn_benchmark = False
+find_unused_parameters = True
+optimizer = dict(type='Adam', lr=0.0001, betas=(0.9, 0.999))
+optimizer_config = dict()
+lr_config = dict(policy='poly', power=0.9, min_lr=1e-05, by_epoch=False)
+runner = dict(type='IterBasedRunner', max_iters=5000)
+checkpoint_config = dict(by_epoch=False, save_optimizer=False, interval=5000)
+evaluation = dict(interval=500, metric=['mIoU', 'mFscore', 'mDice'])
+work_dir = './work_dirs/levitunet'
+gpu_ids = [0]
+auto_resume = False
+
+2023-11-26 21:42:19,081 - mmseg - INFO - Set random seed to 557719010, deterministic: False
+2023-11-26 21:42:21,033 - mmseg - INFO - initialize LevitUnet with init_cfg {'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+Name of parameter - Initialization information
+
+decode_head.conv_seg.weight - torch.Size([2, 64, 1, 1]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+decode_head.conv_seg.bias - torch.Size([2]): 
+NormalInit: mean=0, std=0.01, bias=0 
+
+decode_head.conv_init.0.c.weight - torch.Size([48, 3, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.conv_init.0.bn.weight - torch.Size([48]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.conv_init.0.bn.bias - torch.Size([48]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b1.0.c.weight - torch.Size([48, 48, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b1.0.bn.weight - torch.Size([48]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b1.0.bn.bias - torch.Size([48]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv1.0.c.weight - torch.Size([96, 48, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv1.0.bn.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv1.0.bn.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine1.0.c.weight - torch.Size([96, 96, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine1.0.bn.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine1.0.bn.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv2.0.c.weight - torch.Size([192, 96, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv2.0.bn.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv2.0.bn.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.0.c.weight - torch.Size([192, 192, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.0.bn.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.0.bn.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.2.c.weight - torch.Size([192, 192, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.2.bn.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine2.2.bn.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv3.0.c.weight - torch.Size([384, 192, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv3.0.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.atrous_conv3.0.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.0.c.weight - torch.Size([384, 384, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.0.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.0.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.2.c.weight - torch.Size([384, 384, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.2.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.2.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.4.c.weight - torch.Size([384, 384, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.4.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.combine3.4.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b2.0.c.weight - torch.Size([96, 48, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b2.0.bn.weight - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b2.0.bn.bias - torch.Size([96]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b3.0.c.weight - torch.Size([192, 96, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b3.0.bn.weight - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b3.0.bn.bias - torch.Size([192]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b4.0.c.weight - torch.Size([384, 192, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b4.0.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.cnn_b4.0.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv1.0.weight - torch.Size([512, 2048, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv1.1.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv1.1.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv2.0.weight - torch.Size([512, 512, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv2.1.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_1.conv2.1.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv1.0.weight - torch.Size([256, 704, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv1.1.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv1.1.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv2.0.weight - torch.Size([256, 256, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv2.1.weight - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_2.conv2.1.bias - torch.Size([256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv1.0.weight - torch.Size([128, 352, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv1.1.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv1.1.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv2.0.weight - torch.Size([128, 128, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv2.1.weight - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_3.conv2.1.bias - torch.Size([128]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv1.0.weight - torch.Size([64, 176, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv1.1.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv1.1.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv2.0.weight - torch.Size([64, 64, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv2.1.weight - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.decoderBlock_4.conv2.1.bias - torch.Size([64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.segmentation_head.0.weight - torch.Size([4, 112, 3, 3]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.segmentation_head.0.bias - torch.Size([4]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.attention_biases - torch.Size([6, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.qkv.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.qkv.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.qkv.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.proj.1.c.weight - torch.Size([384, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.proj.1.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.0.m.proj.1.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.0.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.0.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.0.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.2.c.weight - torch.Size([384, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.2.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.1.m.2.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.attention_biases - torch.Size([6, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.qkv.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.qkv.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.qkv.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.proj.1.c.weight - torch.Size([384, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.proj.1.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.2.m.proj.1.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.0.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.0.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.0.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.2.c.weight - torch.Size([384, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.2.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.3.m.2.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.attention_biases - torch.Size([6, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.qkv.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.qkv.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.qkv.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.proj.1.c.weight - torch.Size([384, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.proj.1.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.4.m.proj.1.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.0.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.0.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.0.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.2.c.weight - torch.Size([384, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.2.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.5.m.2.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.attention_biases - torch.Size([6, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.qkv.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.qkv.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.qkv.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.proj.1.c.weight - torch.Size([384, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.proj.1.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.6.m.proj.1.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.0.c.weight - torch.Size([768, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.0.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.0.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.2.c.weight - torch.Size([384, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.2.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_1.7.m.2.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.attention_biases - torch.Size([12, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.kv.c.weight - torch.Size([1920, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.kv.bn.weight - torch.Size([1920]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.kv.bn.bias - torch.Size([1920]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.q.1.c.weight - torch.Size([384, 384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.q.1.bn.weight - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.q.1.bn.bias - torch.Size([384]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.proj.1.c.weight - torch.Size([512, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.proj.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.8.proj.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.0.c.weight - torch.Size([1024, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.0.bn.weight - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.0.bn.bias - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.2.c.weight - torch.Size([512, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.2.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.9.m.2.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.attention_biases - torch.Size([9, 256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.qkv.c.weight - torch.Size([1152, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.qkv.bn.weight - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.qkv.bn.bias - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.proj.1.c.weight - torch.Size([512, 576]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.proj.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.10.m.proj.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.0.c.weight - torch.Size([1024, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.0.bn.weight - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.0.bn.bias - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.2.c.weight - torch.Size([512, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.2.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.11.m.2.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.attention_biases - torch.Size([9, 256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.qkv.c.weight - torch.Size([1152, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.qkv.bn.weight - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.qkv.bn.bias - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.proj.1.c.weight - torch.Size([512, 576]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.proj.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.12.m.proj.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.0.c.weight - torch.Size([1024, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.0.bn.weight - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.0.bn.bias - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.2.c.weight - torch.Size([512, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.2.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.13.m.2.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.attention_biases - torch.Size([9, 256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.qkv.c.weight - torch.Size([1152, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.qkv.bn.weight - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.qkv.bn.bias - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.proj.1.c.weight - torch.Size([512, 576]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.proj.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.14.m.proj.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.0.c.weight - torch.Size([1024, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.0.bn.weight - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.0.bn.bias - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.2.c.weight - torch.Size([512, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.2.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.15.m.2.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.attention_biases - torch.Size([9, 256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.qkv.c.weight - torch.Size([1152, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.qkv.bn.weight - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.qkv.bn.bias - torch.Size([1152]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.proj.1.c.weight - torch.Size([512, 576]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.proj.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.16.m.proj.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.0.c.weight - torch.Size([1024, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.0.bn.weight - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.0.bn.bias - torch.Size([1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.2.c.weight - torch.Size([512, 1024]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.2.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_2.17.m.2.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.attention_biases - torch.Size([16, 256]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.kv.c.weight - torch.Size([2560, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.kv.bn.weight - torch.Size([2560]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.kv.bn.bias - torch.Size([2560]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.q.1.c.weight - torch.Size([512, 512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.q.1.bn.weight - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.q.1.bn.bias - torch.Size([512]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.proj.1.c.weight - torch.Size([768, 2048]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.proj.1.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.18.proj.1.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.0.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.0.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.0.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.2.c.weight - torch.Size([768, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.2.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.19.m.2.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.attention_biases - torch.Size([12, 64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.qkv.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.qkv.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.qkv.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.proj.1.c.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.proj.1.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.20.m.proj.1.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.0.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.0.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.0.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.2.c.weight - torch.Size([768, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.2.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.21.m.2.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.attention_biases - torch.Size([12, 64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.qkv.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.qkv.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.qkv.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.proj.1.c.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.proj.1.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.22.m.proj.1.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.0.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.0.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.0.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.2.c.weight - torch.Size([768, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.2.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.23.m.2.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.attention_biases - torch.Size([12, 64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.qkv.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.qkv.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.qkv.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.proj.1.c.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.proj.1.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.24.m.proj.1.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.0.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.0.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.0.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.2.c.weight - torch.Size([768, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.2.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.25.m.2.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.attention_biases - torch.Size([12, 64]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.qkv.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.qkv.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.qkv.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.proj.1.c.weight - torch.Size([768, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.proj.1.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.26.m.proj.1.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.0.c.weight - torch.Size([1536, 768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.0.bn.weight - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.0.bn.bias - torch.Size([1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.2.c.weight - torch.Size([768, 1536]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.2.bn.weight - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+
+decode_head.block_3.27.m.2.bn.bias - torch.Size([768]): 
+The value is the same before and after calling `init_weights` of EncoderDecoderFull  
+2023-11-26 21:42:21,059 - mmseg - INFO - EncoderDecoderFull(
+  (decode_head): LevitUnet(
+    input_transform=None, ignore_index=255, align_corners=False
+    (loss_decode): ModuleList(
+      (0): FocalLoss()
+      (1): DiceLoss()
+    )
+    (conv_seg): Conv2d(64, 2, kernel_size=(1, 1), stride=(1, 1))
+    (dropout): Dropout2d(p=0.1, inplace=False)
+    (conv_init): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(3, 48, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (cnn_b1): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(48, 48, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (atrous_conv1): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(48, 96, kernel_size=(3, 3), stride=(1, 1), padding=(2, 2), dilation=(2, 2), bias=False)
+        (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (combine1): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(96, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (atrous_conv2): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(96, 192, kernel_size=(3, 3), stride=(1, 1), padding=(3, 3), dilation=(3, 3), bias=False)
+        (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (combine2): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+      (2): Conv2d_BN(
+        (c): Conv2d(192, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (3): Hardswish()
+    )
+    (atrous_conv3): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(192, 384, kernel_size=(3, 3), stride=(1, 1), padding=(4, 4), dilation=(4, 4), bias=False)
+        (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (combine3): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(384, 384, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+      (2): Conv2d_BN(
+        (c): Conv2d(384, 384, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (3): Hardswish()
+      (4): Conv2d_BN(
+        (c): Conv2d(384, 384, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (5): Hardswish()
+    )
+    (cnn_b2): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(48, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (cnn_b3): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(96, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+      (1): Hardswish()
+    )
+    (cnn_b4): Sequential(
+      (0): Conv2d_BN(
+        (c): Conv2d(192, 384, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+        (bn): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (decoderBlock_1): DecoderBlock(
+      (conv1): Conv2dReLU(
+        (0): Conv2d(2048, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (conv2): Conv2dReLU(
+        (0): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    )
+    (decoderBlock_2): DecoderBlock(
+      (conv1): Conv2dReLU(
+        (0): Conv2d(704, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (conv2): Conv2dReLU(
+        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    )
+    (decoderBlock_3): DecoderBlock(
+      (conv1): Conv2dReLU(
+        (0): Conv2d(352, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (conv2): Conv2dReLU(
+        (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    )
+    (decoderBlock_4): DecoderBlock(
+      (conv1): Conv2dReLU(
+        (0): Conv2d(176, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (conv2): Conv2dReLU(
+        (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU(inplace=True)
+      )
+      (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    )
+    (segmentation_head): SegmentationHead(
+      (0): Conv2d(112, 4, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+    )
+    (block_1): Sequential(
+      (0): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=384, out_features=384, bias=False)
+              (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (1): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=768, out_features=384, bias=False)
+            (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (2): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=384, out_features=384, bias=False)
+              (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (3): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=768, out_features=384, bias=False)
+            (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (4): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=384, out_features=384, bias=False)
+              (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (5): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=768, out_features=384, bias=False)
+            (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (6): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=384, out_features=384, bias=False)
+              (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (7): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=384, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=768, out_features=384, bias=False)
+            (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (block_2): Sequential(
+      (8): AttentionSubsample(
+        (kv): Linear_BN(
+          (c): Linear(in_features=384, out_features=1920, bias=False)
+          (bn): BatchNorm1d(1920, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (q): Sequential(
+          (0): Subsample()
+          (1): Linear_BN(
+            (c): Linear(in_features=384, out_features=384, bias=False)
+            (bn): BatchNorm1d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (proj): Sequential(
+          (0): Hardswish()
+          (1): Linear_BN(
+            (c): Linear(in_features=1536, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (9): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=512, out_features=1024, bias=False)
+            (bn): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1024, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (10): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=512, out_features=1152, bias=False)
+            (bn): BatchNorm1d(1152, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=576, out_features=512, bias=False)
+              (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (11): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=512, out_features=1024, bias=False)
+            (bn): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1024, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (12): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=512, out_features=1152, bias=False)
+            (bn): BatchNorm1d(1152, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=576, out_features=512, bias=False)
+              (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (13): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=512, out_features=1024, bias=False)
+            (bn): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1024, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (14): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=512, out_features=1152, bias=False)
+            (bn): BatchNorm1d(1152, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=576, out_features=512, bias=False)
+              (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (15): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=512, out_features=1024, bias=False)
+            (bn): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1024, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (16): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=512, out_features=1152, bias=False)
+            (bn): BatchNorm1d(1152, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=576, out_features=512, bias=False)
+              (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (17): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=512, out_features=1024, bias=False)
+            (bn): BatchNorm1d(1024, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1024, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (block_3): Sequential(
+      (18): AttentionSubsample(
+        (kv): Linear_BN(
+          (c): Linear(in_features=512, out_features=2560, bias=False)
+          (bn): BatchNorm1d(2560, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        )
+        (q): Sequential(
+          (0): Subsample()
+          (1): Linear_BN(
+            (c): Linear(in_features=512, out_features=512, bias=False)
+            (bn): BatchNorm1d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+        (proj): Sequential(
+          (0): Hardswish()
+          (1): Linear_BN(
+            (c): Linear(in_features=2048, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (19): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1536, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (20): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=768, out_features=768, bias=False)
+              (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (21): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1536, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (22): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=768, out_features=768, bias=False)
+              (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (23): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1536, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (24): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=768, out_features=768, bias=False)
+              (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (25): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1536, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+      (26): Residual(
+        (m): Attention(
+          (qkv): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (proj): Sequential(
+            (0): Hardswish()
+            (1): Linear_BN(
+              (c): Linear(in_features=768, out_features=768, bias=False)
+              (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            )
+          )
+        )
+      )
+      (27): Residual(
+        (m): Sequential(
+          (0): Linear_BN(
+            (c): Linear(in_features=768, out_features=1536, bias=False)
+            (bn): BatchNorm1d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+          (1): Hardswish()
+          (2): Linear_BN(
+            (c): Linear(in_features=1536, out_features=768, bias=False)
+            (bn): BatchNorm1d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          )
+        )
+      )
+    )
+    (up): UpsamplingBilinear2d(scale_factor=2.0, mode=bilinear)
+  )
+  init_cfg={'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
+)
+2023-11-26 21:42:21,071 - mmseg - INFO - Loaded 474 images
+2023-11-26 21:42:28,368 - mmseg - INFO - Loaded 105 images
+2023-11-26 21:42:28,369 - mmseg - INFO - Start running, host: featurize@featurize, work_dir: /home/featurize/work/test/work_dirs/levitunet
+2023-11-26 21:42:28,369 - mmseg - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) PolyLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(LOW         ) EvalHook                           
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TensorboardLoggerHook              
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2023-11-26 21:42:28,369 - mmseg - INFO - workflow: [('train', 1)], max: 5000 iters
+2023-11-26 21:42:28,369 - mmseg - INFO - Checkpoints will be saved to /home/featurize/work/test/work_dirs/levitunet by HardDiskBackend.
+2023-11-26 21:43:07,978 - mmseg - INFO - Iter [50/5000]	lr: 9.921e-05, eta: 1:05:01, time: 0.788, data_time: 0.031, memory: 19641, decode.loss_focal: 0.0181, decode.loss_dice: 0.4496, decode.acc_seg: 91.2226, loss: 0.4677
+2023-11-26 21:43:48,973 - mmseg - INFO - Iter [100/5000]	lr: 9.839e-05, eta: 1:05:39, time: 0.820, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0028, decode.loss_dice: 0.4113, decode.acc_seg: 98.7932, loss: 0.4141
+2023-11-26 21:44:30,070 - mmseg - INFO - Iter [150/5000]	lr: 9.758e-05, eta: 1:05:28, time: 0.822, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0017, decode.loss_dice: 0.3844, decode.acc_seg: 98.9778, loss: 0.3861
+2023-11-26 21:45:11,150 - mmseg - INFO - Iter [200/5000]	lr: 9.677e-05, eta: 1:05:01, time: 0.822, data_time: 0.063, memory: 19641, decode.loss_focal: 0.0015, decode.loss_dice: 0.3549, decode.acc_seg: 99.1346, loss: 0.3563
+2023-11-26 21:45:52,346 - mmseg - INFO - Iter [250/5000]	lr: 9.596e-05, eta: 1:04:31, time: 0.824, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0015, decode.loss_dice: 0.3537, decode.acc_seg: 99.0549, loss: 0.3552
+2023-11-26 21:46:33,595 - mmseg - INFO - Iter [300/5000]	lr: 9.514e-05, eta: 1:03:58, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0012, decode.loss_dice: 0.3373, decode.acc_seg: 99.2492, loss: 0.3385
+2023-11-26 21:47:11,920 - mmseg - INFO - Iter [350/5000]	lr: 9.433e-05, eta: 1:02:44, time: 0.766, data_time: 0.007, memory: 19641, decode.loss_focal: 0.0012, decode.loss_dice: 0.3365, decode.acc_seg: 99.2499, loss: 0.3377
+2023-11-26 21:47:53,077 - mmseg - INFO - Iter [400/5000]	lr: 9.351e-05, eta: 1:02:11, time: 0.823, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0011, decode.loss_dice: 0.3316, decode.acc_seg: 99.1989, loss: 0.3327
+2023-11-26 21:48:34,340 - mmseg - INFO - Iter [450/5000]	lr: 9.269e-05, eta: 1:01:38, time: 0.825, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0010, decode.loss_dice: 0.3284, decode.acc_seg: 99.2991, loss: 0.3294
+2023-11-26 21:49:15,484 - mmseg - INFO - Iter [500/5000]	lr: 9.187e-05, eta: 1:01:02, time: 0.823, data_time: 0.063, memory: 19641, decode.loss_focal: 0.0011, decode.loss_dice: 0.3214, decode.acc_seg: 99.1850, loss: 0.3225
+2023-11-26 21:49:40,701 - mmseg - INFO - per class results:
+2023-11-26 21:49:40,702 - mmseg - INFO - 
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+| background | 99.79 | 70.58 | 71.24 | 70.44 | 99.69 | 99.84  |   99.89   | 99.79  | 99.76 |
+|  scratch   | 74.98 | 95.39 | 73.63 |  82.4 | 45.86 | 67.53  |   76.71   | 63.91  |  51.3 |
+|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
+| edgeDamage | 75.47 |  94.9 | 73.65 | 82.47 | 82.52 | 68.61  |    63.7   | 88.35  | 52.91 |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+2023-11-26 21:49:40,703 - mmseg - INFO - Summary:
+2023-11-26 21:49:40,703 - mmseg - INFO - 
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+| 99.79 | 80.15 | 90.22 | 72.84 | 78.44 | 65.35 |  78.66  |    80.1    |   76.9  | 59.33 |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+2023-11-26 21:49:40,719 - mmseg - INFO - Iter(val) [105]	aAcc: 0.9979, mIoU: 0.8015, mVOE: 0.9022, mASD: 0.7284, mMSSD: 0.7844, mAcc: 0.6535, mFscore: 0.7866, mPrecision: 0.8010, mRecall: 0.7690, mDice: 0.5933, IoU.background: 0.9979, IoU.scratch: 0.7498, IoU.stain: 0.7037, IoU.edgeDamage: 0.7547, VOE.background: 0.7058, VOE.scratch: 0.9539, VOE.stain: 1.0000, VOE.edgeDamage: 0.9490, ASD.background: 0.7124, ASD.scratch: 0.7363, ASD.stain: nan, ASD.edgeDamage: 0.7365, MSSD.background: 0.7044, MSSD.scratch: 0.8240, MSSD.stain: nan, MSSD.edgeDamage: 0.8247, Acc.background: 0.9969, Acc.scratch: 0.4586, Acc.stain: 0.3333, Acc.edgeDamage: 0.8252, Fscore.background: 0.9984, Fscore.scratch: 0.6753, Fscore.stain: nan, Fscore.edgeDamage: 0.6861, Precision.background: 0.9989, Precision.scratch: 0.7671, Precision.stain: nan, Precision.edgeDamage: 0.6370, Recall.background: 0.9979, Recall.scratch: 0.6391, Recall.stain: 0.5556, Recall.edgeDamage: 0.8835, Dice.background: 0.9976, Dice.scratch: 0.5130, Dice.stain: 0.3333, Dice.edgeDamage: 0.5291
+2023-11-26 21:50:21,878 - mmseg - INFO - Iter [550/5000]	lr: 9.106e-05, eta: 1:03:49, time: 1.328, data_time: 0.569, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.3171, decode.acc_seg: 99.2272, loss: 0.3181
+2023-11-26 21:51:03,096 - mmseg - INFO - Iter [600/5000]	lr: 9.024e-05, eta: 1:02:53, time: 0.824, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0010, decode.loss_dice: 0.3145, decode.acc_seg: 99.2791, loss: 0.3155
+2023-11-26 21:51:44,225 - mmseg - INFO - Iter [650/5000]	lr: 8.941e-05, eta: 1:01:58, time: 0.823, data_time: 0.063, memory: 19641, decode.loss_focal: 0.0010, decode.loss_dice: 0.3174, decode.acc_seg: 99.2514, loss: 0.3184
+2023-11-26 21:52:22,494 - mmseg - INFO - Iter [700/5000]	lr: 8.859e-05, eta: 1:00:48, time: 0.765, data_time: 0.007, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.3076, decode.acc_seg: 99.2849, loss: 0.3085
+2023-11-26 21:53:03,712 - mmseg - INFO - Iter [750/5000]	lr: 8.777e-05, eta: 0:59:59, time: 0.824, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.3106, decode.acc_seg: 99.3318, loss: 0.3115
+2023-11-26 21:53:44,956 - mmseg - INFO - Iter [800/5000]	lr: 8.695e-05, eta: 0:59:10, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.3035, decode.acc_seg: 99.3031, loss: 0.3043
+2023-11-26 21:54:26,201 - mmseg - INFO - Iter [850/5000]	lr: 8.612e-05, eta: 0:58:23, time: 0.825, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.3018, decode.acc_seg: 99.3226, loss: 0.3027
+2023-11-26 21:55:07,406 - mmseg - INFO - Iter [900/5000]	lr: 8.530e-05, eta: 0:57:36, time: 0.824, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.3061, decode.acc_seg: 99.3143, loss: 0.3070
+2023-11-26 21:55:48,611 - mmseg - INFO - Iter [950/5000]	lr: 8.447e-05, eta: 0:56:50, time: 0.824, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.3042, decode.acc_seg: 99.2501, loss: 0.3051
+2023-11-26 21:56:26,955 - mmseg - INFO - Exp name: levitunet.py
+2023-11-26 21:56:26,956 - mmseg - INFO - Iter [1000/5000]	lr: 8.364e-05, eta: 0:55:53, time: 0.767, data_time: 0.006, memory: 19641, decode.loss_focal: 0.0010, decode.loss_dice: 0.3064, decode.acc_seg: 99.1995, loss: 0.3074
+2023-11-26 21:56:51,518 - mmseg - INFO - per class results:
+2023-11-26 21:56:51,519 - mmseg - INFO - 
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+| background | 99.88 | 70.49 | 71.24 | 70.41 | 99.88 | 99.91  |   99.89   | 99.92  | 99.86 |
+|  scratch   | 77.21 | 93.16 | 73.33 | 80.88 |  52.7 | 72.23  |   79.09   | 68.47  | 58.34 |
+|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
+| edgeDamage |  80.3 | 90.07 |  73.0 | 79.23 | 77.82 | 77.86  |   73.43   | 85.21  |  66.8 |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+2023-11-26 21:56:51,519 - mmseg - INFO - Summary:
+2023-11-26 21:56:51,520 - mmseg - INFO - 
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+| 99.88 | 81.94 | 88.43 | 72.52 | 76.84 | 65.93 |  83.33  |   84.14    |  77.29  | 64.58 |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+2023-11-26 21:56:51,537 - mmseg - INFO - Exp name: levitunet.py
+2023-11-26 21:56:51,537 - mmseg - INFO - Iter(val) [105]	aAcc: 0.9988, mIoU: 0.8194, mVOE: 0.8843, mASD: 0.7252, mMSSD: 0.7684, mAcc: 0.6593, mFscore: 0.8333, mPrecision: 0.8414, mRecall: 0.7729, mDice: 0.6458, IoU.background: 0.9988, IoU.scratch: 0.7721, IoU.stain: 0.7037, IoU.edgeDamage: 0.8030, VOE.background: 0.7049, VOE.scratch: 0.9316, VOE.stain: 1.0000, VOE.edgeDamage: 0.9007, ASD.background: 0.7124, ASD.scratch: 0.7333, ASD.stain: nan, ASD.edgeDamage: 0.7300, MSSD.background: 0.7041, MSSD.scratch: 0.8088, MSSD.stain: nan, MSSD.edgeDamage: 0.7923, Acc.background: 0.9988, Acc.scratch: 0.5270, Acc.stain: 0.3333, Acc.edgeDamage: 0.7782, Fscore.background: 0.9991, Fscore.scratch: 0.7223, Fscore.stain: nan, Fscore.edgeDamage: 0.7786, Precision.background: 0.9989, Precision.scratch: 0.7909, Precision.stain: nan, Precision.edgeDamage: 0.7343, Recall.background: 0.9992, Recall.scratch: 0.6847, Recall.stain: 0.5556, Recall.edgeDamage: 0.8521, Dice.background: 0.9986, Dice.scratch: 0.5834, Dice.stain: 0.3333, Dice.edgeDamage: 0.6680
+2023-11-26 21:57:32,621 - mmseg - INFO - Iter [1050/5000]	lr: 8.281e-05, eta: 0:56:40, time: 1.313, data_time: 0.556, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2965, decode.acc_seg: 99.3741, loss: 0.2973
+2023-11-26 21:58:14,057 - mmseg - INFO - Iter [1100/5000]	lr: 8.198e-05, eta: 0:55:52, time: 0.829, data_time: 0.067, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2962, decode.acc_seg: 99.3584, loss: 0.2970
+2023-11-26 21:58:55,368 - mmseg - INFO - Iter [1150/5000]	lr: 8.115e-05, eta: 0:55:03, time: 0.826, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2963, decode.acc_seg: 99.3878, loss: 0.2971
+2023-11-26 21:59:36,693 - mmseg - INFO - Iter [1200/5000]	lr: 8.032e-05, eta: 0:54:15, time: 0.826, data_time: 0.066, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2963, decode.acc_seg: 99.3772, loss: 0.2971
+2023-11-26 22:00:18,056 - mmseg - INFO - Iter [1250/5000]	lr: 7.949e-05, eta: 0:53:28, time: 0.827, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2935, decode.acc_seg: 99.3515, loss: 0.2943
+2023-11-26 22:00:59,284 - mmseg - INFO - Iter [1300/5000]	lr: 7.865e-05, eta: 0:52:41, time: 0.825, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2894, decode.acc_seg: 99.3505, loss: 0.2902
+2023-11-26 22:01:37,587 - mmseg - INFO - Iter [1350/5000]	lr: 7.782e-05, eta: 0:51:46, time: 0.766, data_time: 0.006, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2849, decode.acc_seg: 99.3742, loss: 0.2856
+2023-11-26 22:02:18,980 - mmseg - INFO - Iter [1400/5000]	lr: 7.698e-05, eta: 0:51:01, time: 0.828, data_time: 0.067, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2870, decode.acc_seg: 99.4028, loss: 0.2878
+2023-11-26 22:03:00,349 - mmseg - INFO - Iter [1450/5000]	lr: 7.614e-05, eta: 0:50:15, time: 0.827, data_time: 0.067, memory: 19641, decode.loss_focal: 0.0007, decode.loss_dice: 0.2889, decode.acc_seg: 99.4204, loss: 0.2897
+2023-11-26 22:03:41,689 - mmseg - INFO - Iter [1500/5000]	lr: 7.530e-05, eta: 0:49:30, time: 0.827, data_time: 0.066, memory: 19641, decode.loss_focal: 0.0007, decode.loss_dice: 0.2838, decode.acc_seg: 99.4479, loss: 0.2845
+2023-11-26 22:04:05,675 - mmseg - INFO - per class results:
+2023-11-26 22:04:05,676 - mmseg - INFO - 
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+| background | 99.79 | 70.58 | 71.24 | 70.45 | 99.65 | 99.84  |   99.91   | 99.76  | 99.76 |
+|  scratch   | 77.79 | 92.59 | 73.07 | 79.56 | 58.63 | 73.35  |   74.39   | 72.42  | 60.02 |
+|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
+| edgeDamage | 76.38 | 93.99 | 73.57 | 82.09 | 91.52 | 70.54  |   64.84   | 94.35  | 55.82 |
++------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
+2023-11-26 22:04:05,676 - mmseg - INFO - Summary:
+2023-11-26 22:04:05,677 - mmseg - INFO - 
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+| 99.79 | 81.08 | 89.29 | 72.63 | 77.37 | 70.78 |  81.24  |   79.71    |  80.52  | 62.23 |
++-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
+2023-11-26 22:04:05,690 - mmseg - INFO - Iter(val) [105]	aAcc: 0.9979, mIoU: 0.8108, mVOE: 0.8929, mASD: 0.7263, mMSSD: 0.7737, mAcc: 0.7078, mFscore: 0.8124, mPrecision: 0.7971, mRecall: 0.8052, mDice: 0.6223, IoU.background: 0.9979, IoU.scratch: 0.7779, IoU.stain: 0.7037, IoU.edgeDamage: 0.7638, VOE.background: 0.7058, VOE.scratch: 0.9259, VOE.stain: 1.0000, VOE.edgeDamage: 0.9399, ASD.background: 0.7124, ASD.scratch: 0.7307, ASD.stain: nan, ASD.edgeDamage: 0.7357, MSSD.background: 0.7045, MSSD.scratch: 0.7956, MSSD.stain: nan, MSSD.edgeDamage: 0.8209, Acc.background: 0.9965, Acc.scratch: 0.5863, Acc.stain: 0.3333, Acc.edgeDamage: 0.9152, Fscore.background: 0.9984, Fscore.scratch: 0.7335, Fscore.stain: nan, Fscore.edgeDamage: 0.7054, Precision.background: 0.9991, Precision.scratch: 0.7439, Precision.stain: nan, Precision.edgeDamage: 0.6484, Recall.background: 0.9976, Recall.scratch: 0.7242, Recall.stain: 0.5556, Recall.edgeDamage: 0.9435, Dice.background: 0.9976, Dice.scratch: 0.6002, Dice.stain: 0.3333, Dice.edgeDamage: 0.5582
+2023-11-26 22:04:46,829 - mmseg - INFO - Iter [1550/5000]	lr: 7.446e-05, eta: 0:49:38, time: 1.303, data_time: 0.546, memory: 19641, decode.loss_focal: 0.0007, decode.loss_dice: 0.2883, decode.acc_seg: 99.4328, loss: 0.2890
+2023-11-26 22:05:27,978 - mmseg - INFO - Iter [1600/5000]	lr: 7.362e-05, eta: 0:48:51, time: 0.823, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0007, decode.loss_dice: 0.2809, decode.acc_seg: 99.4645, loss: 0.2817
+2023-11-26 22:06:06,283 - mmseg - INFO - Iter [1650/5000]	lr: 7.278e-05, eta: 0:47:58, time: 0.766, data_time: 0.007, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2774, decode.acc_seg: 99.4347, loss: 0.2782
+2023-11-26 22:06:47,540 - mmseg - INFO - Iter [1700/5000]	lr: 7.194e-05, eta: 0:47:12, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2841, decode.acc_seg: 99.4193, loss: 0.2850
+2023-11-26 22:07:28,775 - mmseg - INFO - Iter [1750/5000]	lr: 7.109e-05, eta: 0:46:26, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.2925, decode.acc_seg: 99.2728, loss: 0.2934
+2023-11-26 22:08:10,037 - mmseg - INFO - Iter [1800/5000]	lr: 7.025e-05, eta: 0:45:40, time: 0.825, data_time: 0.064, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2848, decode.acc_seg: 99.3162, loss: 0.2856
+2023-11-26 22:08:52,463 - mmseg - INFO - Iter [1850/5000]	lr: 6.940e-05, eta: 0:44:56, time: 0.849, data_time: 0.087, memory: 19641, decode.loss_focal: 0.0009, decode.loss_dice: 0.2864, decode.acc_seg: 99.3783, loss: 0.2872
+2023-11-26 22:09:33,728 - mmseg - INFO - Iter [1900/5000]	lr: 6.855e-05, eta: 0:44:11, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2801, decode.acc_seg: 99.4581, loss: 0.2809
+2023-11-26 22:10:14,960 - mmseg - INFO - Iter [1950/5000]	lr: 6.770e-05, eta: 0:43:26, time: 0.825, data_time: 0.065, memory: 19641, decode.loss_focal: 0.0008, decode.loss_dice: 0.2768, decode.acc_seg: 99.4355, loss: 0.2776

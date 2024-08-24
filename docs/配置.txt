@@ -1,0 +1,23 @@
+************配置环境*****************
+conda create --prefix /cloud/py38 python=3.8
+conda activate /cloud/py38
+`pip install --user torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113`
+`pip install --user mmcv-full==1.7.0 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.11/index.html`
+cd work
+cd test
+pip install --user -v -e.
+pip install --user  einops
+pip install --user timm
+pip install -- user `yapf==0.40.1`
+
+
+************打开程序*****************
+D：
+cd D:\for_study\code_source\code\card
+activate card
+nvidia-smi
+
+************用法*******************
+my_config/myUnet.py---> samples_per_gpu=10   //配置文件 相关的配置信息，包括数据集的位置、数据增强方法等信息
+mmseg/models/decode_heads/my_unet      //整体框架   类名、分类信息、数据集图片后缀、是否忽略0标签
+python tools/train.py my_config/myUnet.py    //开始训练
