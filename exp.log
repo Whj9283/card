@@ -1,868 +1,0 @@
-./tools/dist_train.sh
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
-and will be removed in future. Use torchrun.
-Note that --use_env is set by default in torchrun.
-If your script expects `--local_rank` argument to be set, please
-change it to read from `os.environ['LOCAL_RANK']` instead. See 
-https://pytorch.org/docs/stable/distributed.html#launch-utility for 
-further instructions
-
-  warnings.warn(
-WARNING:torch.distributed.run:
-*****************************************
-Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
-*****************************************
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-2023-11-01 18:36:53,765 - mmseg - INFO - Multi-processing start method is `None`
-2023-11-01 18:36:53,765 - mmseg - INFO - OpenCV num_threads is `112
-2023-11-01 18:36:53,765 - mmseg - INFO - OMP num threads is 1
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-2023-11-01 18:36:53,902 - mmseg - INFO - Environment info:
-------------------------------------------------------------
-sys.platform: linux
-Python: 3.8.13 (default, Mar 28 2022, 11:38:47) [GCC 7.5.0]
-CUDA available: True
-GPU 0,1,2,3: Quadro RTX 8000
-CUDA_HOME: /usr/local/cuda-10.1
-NVCC: Cuda compilation tools, release 10.1, V10.1.10
-GCC: gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0
-PyTorch: 1.10.0+cu102
-PyTorch compiling details: PyTorch built with:
-  - GCC 7.3
-  - C++ Version: 201402
-  - Intel(R) Math Kernel Library Version 2020.0.0 Product Build 20191122 for Intel(R) 64 architecture applications
-  - Intel(R) MKL-DNN v2.2.3 (Git Hash 7336ca9f055cf1bfa13efb658fe15dc9b41f0740)
-  - OpenMP 201511 (a.k.a. OpenMP 4.5)
-  - LAPACK is enabled (usually provided by MKL)
-  - NNPACK is enabled
-  - CPU capability usage: AVX512
-  - CUDA Runtime 10.2
-  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70
-  - CuDNN 7.6.5
-  - Magma 2.5.2
-  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=10.2, CUDNN_VERSION=7.6.5, CXX_COMPILER=/opt/rh/devtoolset-7/root/usr/bin/c++, CXX_FLAGS= -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-sign-compare -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function -Wno-unused-result -Wno-unused-local-typedefs -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.10.0, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, 
-
-TorchVision: 0.11.1+cu102
-OpenCV: 4.7.0
-MMCV: 1.7.0
-MMCV Compiler: GCC 7.3
-MMCV CUDA Compiler: 10.2
-MMSegmentation: 0.29.1+
-------------------------------------------------------------
-
-2023-11-01 18:36:53,902 - mmseg - INFO - Distributed training: True
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-/data2/zhangzifan/code_dir/2023-10-25-01/mmseg/models/builder.py:41: UserWarning: train_cfg and test_cfg is deprecated, please specify them in model
-  warnings.warn(
-/data2/zhangzifan/code_dir/2023-10-25-01/mmseg/models/builder.py:41: UserWarning: train_cfg and test_cfg is deprecated, please specify them in model
-  warnings.warn(
-2023-11-01 18:36:54,142 - mmseg - INFO - Config:
-norm_cfg = dict(type='SyncBN', requires_grad=True)
-backbone_norm_cfg = dict(type='LN', requires_grad=True)
-model = dict(
-    type='EncoderDecoder',
-    pretrained=None,
-    backbone=dict(
-        type='UnetBackbone',
-        in_channels=3,
-        context_layer='kernelselect',
-        channel_list=[64, 128, 256, 512]),
-    decode_head=dict(
-        type='UnetHead',
-        num_classes=4,
-        channels=64,
-        threshold=0.2,
-        norm_cfg=dict(type='SyncBN', requires_grad=True),
-        loss_decode=[
-            dict(
-                type='FocalLoss',
-                use_sigmoid=True,
-                gamma=2.0,
-                alpha=0.25,
-                loss_weight=2.0),
-            dict(type='DiceLoss', loss_name='loss_dice', loss_weight=2.0)
-        ]))
-train_cfg = dict()
-test_cfg = dict(mode='whole')
-dataset_type = 'MyDataset'
-crop_size = (512, 512)
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations'),
-    dict(type='Resize', img_scale=(600, 600)),
-    dict(type='RandomCrop', crop_size=(512, 512), cat_max_ratio=0.75),
-    dict(type='RandomFlip', flip_ratio=0.5),
-    dict(type='PhotoMetricDistortion'),
-    dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
-    dict(type='Pad', size=(512, 512), pad_val=0, seg_pad_val=255),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_semantic_seg'])
-]
-test_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(
-        type='MultiScaleFlipAug',
-        img_scale=(512, 512),
-        flip=False,
-        transforms=[
-            dict(type='Resize', keep_ratio=False),
-            dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
-            dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img'])
-        ])
-]
-data_root = './datasets/'
-data = dict(
-    samples_per_gpu=8,
-    workers_per_gpu=2,
-    train=dict(
-        type='MyDataset',
-        data_root='./datasets/',
-        img_dir='train/images',
-        ann_dir='train/labels',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(type='LoadAnnotations'),
-            dict(type='Resize', img_scale=(600, 600)),
-            dict(type='RandomCrop', crop_size=(512, 512), cat_max_ratio=0.75),
-            dict(type='RandomFlip', flip_ratio=0.5),
-            dict(type='PhotoMetricDistortion'),
-            dict(type='Normalize', mean=[0, 0, 0], std=[1, 1, 1], to_rgb=True),
-            dict(type='Pad', size=(512, 512), pad_val=0, seg_pad_val=255),
-            dict(type='DefaultFormatBundle'),
-            dict(type='Collect', keys=['img', 'gt_semantic_seg'])
-        ]),
-    val=dict(
-        type='MyDataset',
-        data_root='./datasets/',
-        img_dir='test/images',
-        ann_dir='test/labels',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(
-                type='MultiScaleFlipAug',
-                img_scale=(512, 512),
-                flip=False,
-                transforms=[
-                    dict(type='Resize', keep_ratio=False),
-                    dict(
-                        type='Normalize',
-                        mean=[0, 0, 0],
-                        std=[1, 1, 1],
-                        to_rgb=True),
-                    dict(type='ImageToTensor', keys=['img']),
-                    dict(type='Collect', keys=['img'])
-                ])
-        ]),
-    test=dict(
-        type='MyDataset',
-        data_root='./datasets/',
-        img_dir='test/images',
-        ann_dir='test/labels',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(
-                type='MultiScaleFlipAug',
-                img_scale=(512, 512),
-                flip=False,
-                transforms=[
-                    dict(type='Resize', keep_ratio=False),
-                    dict(
-                        type='Normalize',
-                        mean=[0, 0, 0],
-                        std=[1, 1, 1],
-                        to_rgb=True),
-                    dict(type='ImageToTensor', keys=['img']),
-                    dict(type='Collect', keys=['img'])
-                ])
-        ]))
-log_config = dict(
-    interval=50,
-    hooks=[
-        dict(type='TensorboardLoggerHook'),
-        dict(type='TextLoggerHook', by_epoch=False)
-    ])
-dist_params = dict(backend='nccl')
-log_level = 'INFO'
-load_from = None
-resume_from = None
-workflow = [('train', 1)]
-cudnn_benchmark = False
-optimizer = dict(type='Adam', lr=0.0001, betas=(0.9, 0.999))
-optimizer_config = dict()
-lr_config = dict(policy='poly', power=0.9, min_lr=1e-05, by_epoch=False)
-runner = dict(type='IterBasedRunner', max_iters=5000)
-checkpoint_config = dict(by_epoch=False, save_optimizer=False, interval=5000)
-evaluation = dict(interval=500, metric=['mIoU', 'mFscore', 'mDice'])
-work_dir = './work_dirs/unet_kernel_select'
-gpu_ids = range(0, 4)
-auto_resume = False
-
-2023-11-01 18:36:54,142 - mmseg - INFO - Set random seed to 0, deterministic: False
-/data2/zhangzifan/code_dir/2023-10-25-01/mmseg/models/builder.py:41: UserWarning: train_cfg and test_cfg is deprecated, please specify them in model
-  warnings.warn(
-/data2/zhangzifan/code_dir/2023-10-25-01/mmseg/models/builder.py:41: UserWarning: train_cfg and test_cfg is deprecated, please specify them in model
-  warnings.warn(
-2023-11-01 18:36:54,394 - mmseg - INFO - initialize UnetHead with init_cfg {'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
-2023-11-01 18:36:54,400 - mmseg - INFO - EncoderDecoder(
-  (backbone): UnetBackbone(
-    (inc): InConv(
-      (conv): DoubleConv(
-        (conv): Sequential(
-          (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU(inplace=True)
-          (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (4): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (5): ReLU(inplace=True)
-        )
-      )
-    )
-    (down1): Down(
-      (down_conv): Sequential(
-        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-        (1): DoubleConv(
-          (conv): Sequential(
-            (0): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (2): ReLU(inplace=True)
-            (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (4): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (5): ReLU(inplace=True)
-          )
-        )
-      )
-    )
-    (down2): Down(
-      (down_conv): Sequential(
-        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-        (1): DoubleConv(
-          (conv): Sequential(
-            (0): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (2): ReLU(inplace=True)
-            (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (4): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (5): ReLU(inplace=True)
-          )
-        )
-      )
-    )
-    (down3): Down(
-      (down_conv): Sequential(
-        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-        (1): DoubleConv(
-          (conv): Sequential(
-            (0): Conv2d(256, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (1): SyncBatchNorm(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (2): ReLU(inplace=True)
-            (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (4): SyncBatchNorm(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (5): ReLU(inplace=True)
-          )
-        )
-      )
-    )
-    (down4): Down(
-      (down_conv): Sequential(
-        (0): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
-        (1): DoubleConv(
-          (conv): Sequential(
-            (0): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (1): SyncBatchNorm(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (2): ReLU(inplace=True)
-            (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-            (4): SyncBatchNorm(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-            (5): ReLU(inplace=True)
-          )
-        )
-      )
-    )
-    (context_layer1_1): KernelSelectAttention(
-      (convs): ModuleList(
-        (0): Sequential(
-          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (1): Sequential(
-          (0): Conv2d(64, 64, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (2): Sequential(
-          (0): Conv2d(64, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (3): Sequential(
-          (0): Conv2d(64, 64, kernel_size=(9, 9), stride=(1, 1), padding=(4, 4))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-      )
-      (fc): Linear(in_features=64, out_features=32, bias=True)
-      (fcs): ModuleList(
-        (0): Linear(in_features=32, out_features=64, bias=True)
-        (1): Linear(in_features=32, out_features=64, bias=True)
-        (2): Linear(in_features=32, out_features=64, bias=True)
-        (3): Linear(in_features=32, out_features=64, bias=True)
-      )
-      (softmax): Softmax(dim=0)
-    )
-    (context_layer2_1): KernelSelectAttention(
-      (convs): ModuleList(
-        (0): Sequential(
-          (0): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (1): Sequential(
-          (0): Conv2d(128, 128, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
-          (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (2): Sequential(
-          (0): Conv2d(128, 128, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
-          (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (3): Sequential(
-          (0): Conv2d(128, 128, kernel_size=(9, 9), stride=(1, 1), padding=(4, 4))
-          (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-      )
-      (fc): Linear(in_features=128, out_features=32, bias=True)
-      (fcs): ModuleList(
-        (0): Linear(in_features=32, out_features=128, bias=True)
-        (1): Linear(in_features=32, out_features=128, bias=True)
-        (2): Linear(in_features=32, out_features=128, bias=True)
-        (3): Linear(in_features=32, out_features=128, bias=True)
-      )
-      (softmax): Softmax(dim=0)
-    )
-    (context_layer3_1): KernelSelectAttention(
-      (convs): ModuleList(
-        (0): Sequential(
-          (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (1): Sequential(
-          (0): Conv2d(256, 256, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
-          (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (2): Sequential(
-          (0): Conv2d(256, 256, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3))
-          (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-        (3): Sequential(
-          (0): Conv2d(256, 256, kernel_size=(9, 9), stride=(1, 1), padding=(4, 4))
-          (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU()
-        )
-      )
-      (fc): Linear(in_features=256, out_features=32, bias=True)
-      (fcs): ModuleList(
-        (0): Linear(in_features=32, out_features=256, bias=True)
-        (1): Linear(in_features=32, out_features=256, bias=True)
-        (2): Linear(in_features=32, out_features=256, bias=True)
-        (3): Linear(in_features=32, out_features=256, bias=True)
-      )
-      (softmax): Softmax(dim=0)
-    )
-  )
-  (decode_head): UnetHead(
-    input_transform=None, ignore_index=255, align_corners=False
-    (loss_decode): ModuleList(
-      (0): FocalLoss()
-      (1): DiceLoss()
-    )
-    (conv_seg): Conv2d(64, 4, kernel_size=(1, 1), stride=(1, 1))
-    (dropout): Dropout2d(p=0.1, inplace=False)
-    (up1): Up(
-      (up): Upsample(scale_factor=2.0, mode=bilinear)
-      (conv): DoubleConv(
-        (conv): Sequential(
-          (0): Conv2d(1024, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU(inplace=True)
-          (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (4): SyncBatchNorm(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (5): ReLU(inplace=True)
-        )
-      )
-    )
-    (up2): Up(
-      (up): Upsample(scale_factor=2.0, mode=bilinear)
-      (conv): DoubleConv(
-        (conv): Sequential(
-          (0): Conv2d(512, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU(inplace=True)
-          (3): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (4): SyncBatchNorm(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (5): ReLU(inplace=True)
-        )
-      )
-    )
-    (up3): Up(
-      (up): Upsample(scale_factor=2.0, mode=bilinear)
-      (conv): DoubleConv(
-        (conv): Sequential(
-          (0): Conv2d(256, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU(inplace=True)
-          (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (4): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (5): ReLU(inplace=True)
-        )
-      )
-    )
-    (up4): Up(
-      (up): Upsample(scale_factor=2.0, mode=bilinear)
-      (conv): DoubleConv(
-        (conv): Sequential(
-          (0): Conv2d(128, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (1): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (2): ReLU(inplace=True)
-          (3): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
-          (4): SyncBatchNorm(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (5): ReLU(inplace=True)
-        )
-      )
-    )
-  )
-  init_cfg={'type': 'Normal', 'std': 0.01, 'override': {'name': 'conv_seg'}}
-)
-2023-11-01 18:36:54,408 - mmseg - INFO - Loaded 308 images
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-fatal: not a git repository (or any parent up to mount point /)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-2023-11-01 18:36:59,828 - mmseg - INFO - Loaded 78 images
-2023-11-01 18:36:59,829 - mmseg - INFO - Start running, host: zhangzifan@s2, work_dir: /data2/zhangzifan/code_dir/2023-10-25-01/work_dirs/unet_kernel_select
-2023-11-01 18:36:59,830 - mmseg - INFO - Hooks will be executed in the following order:
-before_run:
-(VERY_HIGH   ) PolyLrUpdaterHook                  
-(NORMAL      ) CheckpointHook                     
-(LOW         ) DistEvalHook                       
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_epoch:
-(VERY_HIGH   ) PolyLrUpdaterHook                  
-(LOW         ) IterTimerHook                      
-(LOW         ) DistEvalHook                       
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_iter:
-(VERY_HIGH   ) PolyLrUpdaterHook                  
-(LOW         ) IterTimerHook                      
-(LOW         ) DistEvalHook                       
- -------------------- 
-after_train_iter:
-(ABOVE_NORMAL) OptimizerHook                      
-(NORMAL      ) CheckpointHook                     
-(LOW         ) IterTimerHook                      
-(LOW         ) DistEvalHook                       
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_train_epoch:
-(NORMAL      ) CheckpointHook                     
-(LOW         ) DistEvalHook                       
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_epoch:
-(LOW         ) IterTimerHook                      
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_epoch:
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_run:
-(VERY_LOW    ) TensorboardLoggerHook              
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-2023-11-01 18:36:59,830 - mmseg - INFO - workflow: [('train', 1)], max: 5000 iters
-2023-11-01 18:36:59,830 - mmseg - INFO - Checkpoints will be saved to /data2/zhangzifan/code_dir/2023-10-25-01/work_dirs/unet_kernel_select by HardDiskBackend.
-2023-11-01 18:37:00.236713: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-11-01 18:37:00.285700: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
-2023-11-01 18:37:00.286061: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2023-11-01 18:37:01.241700: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-2023-11-01 18:37:12,161 - mmcv - INFO - Reducer buckets have been rebuilt in this iteration.
-2023-11-01 18:39:57,903 - mmseg - INFO - Iter [50/5000]	lr: 9.921e-05, eta: 4:50:00, time: 3.515, data_time: 0.512, memory: 23741, decode.loss_focal: 0.1725, decode.loss_dice: 1.7111, decode.acc_seg: 97.9092, loss: 1.8836
-2023-11-01 18:42:52,122 - mmseg - INFO - Iter [100/5000]	lr: 9.839e-05, eta: 4:45:49, time: 3.484, data_time: 0.450, memory: 23741, decode.loss_focal: 0.1272, decode.loss_dice: 1.6541, decode.acc_seg: 99.6685, loss: 1.7812
-2023-11-01 18:45:43,072 - mmseg - INFO - Iter [150/5000]	lr: 9.758e-05, eta: 4:40:43, time: 3.419, data_time: 0.377, memory: 23741, decode.loss_focal: 0.0947, decode.loss_dice: 1.6015, decode.acc_seg: 99.5245, loss: 1.6962
-2023-11-01 18:48:38,161 - mmseg - INFO - Iter [200/5000]	lr: 9.677e-05, eta: 4:38:24, time: 3.502, data_time: 0.446, memory: 23741, decode.loss_focal: 0.0713, decode.loss_dice: 1.5481, decode.acc_seg: 99.4705, loss: 1.6194
-2023-11-01 18:51:28,504 - mmseg - INFO - Iter [250/5000]	lr: 9.596e-05, eta: 4:34:20, time: 3.407, data_time: 0.375, memory: 23741, decode.loss_focal: 0.0544, decode.loss_dice: 1.4979, decode.acc_seg: 99.4924, loss: 1.5524
-2023-11-01 18:54:22,595 - mmseg - INFO - Iter [300/5000]	lr: 9.514e-05, eta: 4:31:40, time: 3.482, data_time: 0.448, memory: 23741, decode.loss_focal: 0.0418, decode.loss_dice: 1.4515, decode.acc_seg: 99.5542, loss: 1.4933
-2023-11-01 18:57:13,515 - mmseg - INFO - Iter [350/5000]	lr: 9.433e-05, eta: 4:28:13, time: 3.418, data_time: 0.372, memory: 23741, decode.loss_focal: 0.0338, decode.loss_dice: 1.4045, decode.acc_seg: 99.6096, loss: 1.4383
-2023-11-01 19:00:07,585 - mmseg - INFO - Iter [400/5000]	lr: 9.351e-05, eta: 4:25:32, time: 3.481, data_time: 0.453, memory: 23741, decode.loss_focal: 0.0274, decode.loss_dice: 1.3430, decode.acc_seg: 99.6893, loss: 1.3704
-2023-11-01 19:02:58,207 - mmseg - INFO - Iter [450/5000]	lr: 9.269e-05, eta: 4:22:13, time: 3.412, data_time: 0.381, memory: 23741, decode.loss_focal: 0.0223, decode.loss_dice: 1.2837, decode.acc_seg: 99.7311, loss: 1.3060
-2023-11-01 19:05:52,970 - mmseg - INFO - Iter [500/5000]	lr: 9.187e-05, eta: 4:19:37, time: 3.495, data_time: 0.438, memory: 23741, decode.loss_focal: 0.0187, decode.loss_dice: 1.2356, decode.acc_seg: 99.7578, loss: 1.2543
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 0.2 task/s, elapsed: 6s, ETA:   467s[                                  ] 2/78, 0.3 task/s, elapsed: 6s, ETA:   230s[>                                 ] 3/78, 0.5 task/s, elapsed: 6s, ETA:   152s[>                                 ] 4/78, 0.7 task/s, elapsed: 6s, ETA:   112s[>>                                ] 5/78, 0.8 task/s, elapsed: 6s, ETA:    91s[>>                                ] 6/78, 1.0 task/s, elapsed: 6s, ETA:    75s[>>>                               ] 7/78, 1.1 task/s, elapsed: 6s, ETA:    63s[>>>                               ] 8/78, 1.3 task/s, elapsed: 6s, ETA:    55s[>>>                               ] 9/78, 1.4 task/s, elapsed: 6s, ETA:    49s[>>>>                             ] 10/78, 1.6 task/s, elapsed: 6s, ETA:    44s[>>>>                             ] 11/78, 1.7 task/s, elapsed: 6s, ETA:    39s[>>>>>                            ] 12/78, 1.9 task/s, elapsed: 6s, ETA:    35s[>>>>>                            ] 13/78, 2.0 task/s, elapsed: 7s, ETA:    33s[>>>>>                            ] 14/78, 2.1 task/s, elapsed: 7s, ETA:    30s[>>>>>>                           ] 15/78, 2.3 task/s, elapsed: 7s, ETA:    28s[>>>>>>                           ] 16/78, 2.4 task/s, elapsed: 7s, ETA:    26s[>>>>>>>                          ] 17/78, 2.5 task/s, elapsed: 7s, ETA:    24s[>>>>>>>                          ] 18/78, 2.7 task/s, elapsed: 7s, ETA:    23s[>>>>>>>>                         ] 19/78, 2.8 task/s, elapsed: 7s, ETA:    21s[>>>>>>>>                         ] 20/78, 3.0 task/s, elapsed: 7s, ETA:    20s[>>>>>>>>                         ] 21/78, 3.0 task/s, elapsed: 7s, ETA:    19s[>>>>>>>>>                        ] 22/78, 3.2 task/s, elapsed: 7s, ETA:    18s[>>>>>>>>>                        ] 23/78, 3.3 task/s, elapsed: 7s, ETA:    17s[>>>>>>>>>>                       ] 24/78, 3.5 task/s, elapsed: 7s, ETA:    16s[>>>>>>>>>>                       ] 25/78, 3.5 task/s, elapsed: 7s, ETA:    15s[>>>>>>>>>>>                      ] 26/78, 3.6 task/s, elapsed: 7s, ETA:    14s[>>>>>>>>>>>                      ] 27/78, 3.8 task/s, elapsed: 7s, ETA:    13s[>>>>>>>>>>>                      ] 28/78, 3.9 task/s, elapsed: 7s, ETA:    13s[>>>>>>>>>>>>                     ] 29/78, 4.0 task/s, elapsed: 7s, ETA:    12s[>>>>>>>>>>>>                     ] 30/78, 4.1 task/s, elapsed: 7s, ETA:    12s[>>>>>>>>>>>>>                    ] 31/78, 4.2 task/s, elapsed: 7s, ETA:    11s[>>>>>>>>>>>>>                    ] 32/78, 4.4 task/s, elapsed: 7s, ETA:    11s[>>>>>>>>>>>>>                    ] 33/78, 4.4 task/s, elapsed: 8s, ETA:    10s[>>>>>>>>>>>>>>                   ] 34/78, 4.5 task/s, elapsed: 8s, ETA:    10s[>>>>>>>>>>>>>>                   ] 35/78, 4.7 task/s, elapsed: 8s, ETA:     9s[>>>>>>>>>>>>>>>                  ] 36/78, 4.8 task/s, elapsed: 8s, ETA:     9s[>>>>>>>>>>>>>>>                  ] 37/78, 4.8 task/s, elapsed: 8s, ETA:     9s[>>>>>>>>>>>>>>>>                 ] 38/78, 4.9 task/s, elapsed: 8s, ETA:     8s[>>>>>>>>>>>>>>>>                 ] 39/78, 5.1 task/s, elapsed: 8s, ETA:     8s[>>>>>>>>>>>>>>>>                 ] 40/78, 5.2 task/s, elapsed: 8s, ETA:     7s[>>>>>>>>>>>>>>>>>                ] 41/78, 5.2 task/s, elapsed: 8s, ETA:     7s[>>>>>>>>>>>>>>>>>                ] 42/78, 5.3 task/s, elapsed: 8s, ETA:     7s[>>>>>>>>>>>>>>>>>>               ] 43/78, 5.5 task/s, elapsed: 8s, ETA:     6s[>>>>>>>>>>>>>>>>>>               ] 44/78, 5.6 task/s, elapsed: 8s, ETA:     6s[>>>>>>>>>>>>>>>>>>>              ] 45/78, 5.6 task/s, elapsed: 8s, ETA:     6s[>>>>>>>>>>>>>>>>>>>              ] 46/78, 5.7 task/s, elapsed: 8s, ETA:     6s[>>>>>>>>>>>>>>>>>>>              ] 47/78, 5.9 task/s, elapsed: 8s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>             ] 48/78, 6.0 task/s, elapsed: 8s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>             ] 49/78, 6.0 task/s, elapsed: 8s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>            ] 50/78, 6.1 task/s, elapsed: 8s, ETA:     5s[>>>>>>>>>>>>>>>>>>>>>            ] 51/78, 6.2 task/s, elapsed: 8s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 6.3 task/s, elapsed: 8s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 6.3 task/s, elapsed: 8s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>           ] 54/78, 6.5 task/s, elapsed: 8s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 6.6 task/s, elapsed: 8s, ETA:     4s[>>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 6.7 task/s, elapsed: 8s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 6.7 task/s, elapsed: 9s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 6.8 task/s, elapsed: 9s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>         ] 59/78, 6.9 task/s, elapsed: 9s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 7.0 task/s, elapsed: 9s, ETA:     3s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 61/78, 7.0 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 7.1 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 7.2 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 7.3 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 7.3 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 66/78, 7.4 task/s, elapsed: 9s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 7.5 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 7.7 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 7.6 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 7.7 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 7.8 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 8.0 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 7.9 task/s, elapsed: 9s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 8.0 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 8.1 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 8.2 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 8.2 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 8.3 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 8.4 task/s, elapsed: 9s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 8.5 task/s, elapsed: 9s, ETA:     0s
-
-2023-11-01 19:06:57,200 - mmseg - INFO - per class results:
-2023-11-01 19:06:57,202 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.94 | 70.43 | 70.76 | 70.39 | 99.96 | 99.95  |   99.93   | 99.98  | 99.93 |
-|  scratch   | 83.75 | 86.62 | 71.97 | 76.49 | 72.45 | 83.21  |   84.98   | 81.64  | 74.81 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 19:06:57,202 - mmseg - INFO - Summary:
-2023-11-01 19:06:57,202 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.94 | 81.11 | 89.26 | 71.36 | 73.44 | 59.77 |  91.58  |   92.46    |  73.18  | 60.35 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 19:06:57,206 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9994, mIoU: 0.8111, mVOE: 0.8926, mASD: 0.7136, mMSSD: 0.7344, mAcc: 0.5977, mFscore: 0.9158, mPrecision: 0.9246, mRecall: 0.7318, mDice: 0.6035, IoU.background: 0.9994, IoU.scratch: 0.8375, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7043, VOE.scratch: 0.8662, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7076, ASD.scratch: 0.7197, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7649, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9996, Acc.scratch: 0.7245, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9995, Fscore.scratch: 0.8321, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9993, Precision.scratch: 0.8498, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8164, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9993, Dice.scratch: 0.7481, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 19:09:50,738 - mmseg - INFO - Iter [550/5000]	lr: 9.106e-05, eta: 4:25:27, time: 4.755, data_time: 1.735, memory: 23741, decode.loss_focal: 0.0157, decode.loss_dice: 1.1904, decode.acc_seg: 99.7812, loss: 1.2061
-2023-11-01 19:12:41,414 - mmseg - INFO - Iter [600/5000]	lr: 9.024e-05, eta: 4:21:27, time: 3.414, data_time: 0.378, memory: 23741, decode.loss_focal: 0.0135, decode.loss_dice: 1.1629, decode.acc_seg: 99.7839, loss: 1.1764
-2023-11-01 19:15:35,864 - mmseg - INFO - Iter [650/5000]	lr: 8.941e-05, eta: 4:18:04, time: 3.489, data_time: 0.451, memory: 23741, decode.loss_focal: 0.0115, decode.loss_dice: 1.1388, decode.acc_seg: 99.7966, loss: 1.1503
-2023-11-01 19:18:26,570 - mmseg - INFO - Iter [700/5000]	lr: 8.859e-05, eta: 4:14:21, time: 3.414, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0098, decode.loss_dice: 1.1144, decode.acc_seg: 99.8057, loss: 1.1241
-2023-11-01 19:21:20,688 - mmseg - INFO - Iter [750/5000]	lr: 8.777e-05, eta: 4:11:05, time: 3.482, data_time: 0.448, memory: 23741, decode.loss_focal: 0.0085, decode.loss_dice: 1.0958, decode.acc_seg: 99.8118, loss: 1.1042
-2023-11-01 19:24:12,126 - mmseg - INFO - Iter [800/5000]	lr: 8.695e-05, eta: 4:07:37, time: 3.429, data_time: 0.375, memory: 23741, decode.loss_focal: 0.0074, decode.loss_dice: 1.0797, decode.acc_seg: 99.8162, loss: 1.0870
-2023-11-01 19:27:06,886 - mmseg - INFO - Iter [850/5000]	lr: 8.612e-05, eta: 4:04:30, time: 3.495, data_time: 0.448, memory: 23741, decode.loss_focal: 0.0066, decode.loss_dice: 1.0668, decode.acc_seg: 99.8206, loss: 1.0734
-2023-11-01 19:29:58,195 - mmseg - INFO - Iter [900/5000]	lr: 8.530e-05, eta: 4:01:08, time: 3.426, data_time: 0.370, memory: 23741, decode.loss_focal: 0.0059, decode.loss_dice: 1.0547, decode.acc_seg: 99.8249, loss: 1.0605
-2023-11-01 19:32:53,095 - mmseg - INFO - Iter [950/5000]	lr: 8.447e-05, eta: 3:58:05, time: 3.498, data_time: 0.451, memory: 23741, decode.loss_focal: 0.0053, decode.loss_dice: 1.0325, decode.acc_seg: 99.8324, loss: 1.0377
-2023-11-01 19:35:47,888 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 19:35:47,889 - mmseg - INFO - Iter [1000/5000]	lr: 8.364e-05, eta: 3:55:02, time: 3.496, data_time: 0.443, memory: 23741, decode.loss_focal: 0.0047, decode.loss_dice: 1.0202, decode.acc_seg: 99.8384, loss: 1.0249
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.5 task/s, elapsed: 0s, ETA:    22s[                                  ] 2/78, 7.0 task/s, elapsed: 0s, ETA:    11s[>                                ] 3/78, 10.5 task/s, elapsed: 0s, ETA:     7s[>                                ] 4/78, 14.0 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 10.7 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.9 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 15.0 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 17.2 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 14.1 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.6 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 17.2 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.7 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 16.0 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 17.2 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 18.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 16/78, 19.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 17.2 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 18.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 20.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 18.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.9 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 20.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.9 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.1 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.7 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 20.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.5 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.1 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.4 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.6 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 21.9 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 19:36:45,286 - mmseg - INFO - per class results:
-2023-11-01 19:36:45,287 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.93   | 99.98  | 99.94 |
-|  scratch   | 85.26 | 85.11 | 71.93 | 76.24 | 73.57 | 85.28  |   88.88   | 82.38  | 77.92 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 19:36:45,287 - mmseg - INFO - Summary:
-2023-11-01 19:36:45,288 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.49 | 88.88 | 71.34 | 73.32 | 60.05 |  92.62  |   94.41    |  73.37  | 61.13 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 19:36:45,291 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 19:36:45,292 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8149, mVOE: 0.8888, mASD: 0.7134, mMSSD: 0.7332, mAcc: 0.6005, mFscore: 0.9262, mPrecision: 0.9441, mRecall: 0.7337, mDice: 0.6113, IoU.background: 0.9995, IoU.scratch: 0.8526, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8511, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7193, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7624, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7357, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8528, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9993, Precision.scratch: 0.8888, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8238, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7792, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 19:39:35,521 - mmseg - INFO - Iter [1050/5000]	lr: 8.281e-05, eta: 3:55:19, time: 4.553, data_time: 1.525, memory: 23741, decode.loss_focal: 0.0043, decode.loss_dice: 0.9933, decode.acc_seg: 99.8381, loss: 0.9976
-2023-11-01 19:42:30,856 - mmseg - INFO - Iter [1100/5000]	lr: 8.198e-05, eta: 3:52:09, time: 3.507, data_time: 0.447, memory: 23741, decode.loss_focal: 0.0039, decode.loss_dice: 0.9509, decode.acc_seg: 99.8406, loss: 0.9549
-2023-11-01 19:45:21,524 - mmseg - INFO - Iter [1150/5000]	lr: 8.115e-05, eta: 3:48:43, time: 3.413, data_time: 0.369, memory: 23741, decode.loss_focal: 0.0037, decode.loss_dice: 0.8660, decode.acc_seg: 99.8426, loss: 0.8698
-2023-11-01 19:48:16,302 - mmseg - INFO - Iter [1200/5000]	lr: 8.032e-05, eta: 3:45:34, time: 3.496, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0038, decode.loss_dice: 0.7901, decode.acc_seg: 99.8315, loss: 0.7939
-2023-11-01 19:51:06,732 - mmseg - INFO - Iter [1250/5000]	lr: 7.949e-05, eta: 3:42:13, time: 3.409, data_time: 0.370, memory: 23741, decode.loss_focal: 0.0038, decode.loss_dice: 0.7503, decode.acc_seg: 99.8299, loss: 0.7541
-2023-11-01 19:54:01,501 - mmseg - INFO - Iter [1300/5000]	lr: 7.865e-05, eta: 3:39:07, time: 3.495, data_time: 0.454, memory: 23741, decode.loss_focal: 0.0035, decode.loss_dice: 0.7167, decode.acc_seg: 99.8407, loss: 0.7202
-2023-11-01 19:56:52,410 - mmseg - INFO - Iter [1350/5000]	lr: 7.782e-05, eta: 3:35:51, time: 3.418, data_time: 0.377, memory: 23741, decode.loss_focal: 0.0033, decode.loss_dice: 0.7022, decode.acc_seg: 99.8484, loss: 0.7056
-2023-11-01 19:59:48,051 - mmseg - INFO - Iter [1400/5000]	lr: 7.698e-05, eta: 3:32:49, time: 3.513, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0033, decode.loss_dice: 0.6993, decode.acc_seg: 99.8483, loss: 0.7026
-2023-11-01 20:02:42,595 - mmseg - INFO - Iter [1450/5000]	lr: 7.614e-05, eta: 3:29:45, time: 3.491, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0032, decode.loss_dice: 0.6910, decode.acc_seg: 99.8462, loss: 0.6942
-2023-11-01 20:05:33,495 - mmseg - INFO - Iter [1500/5000]	lr: 7.530e-05, eta: 3:26:33, time: 3.418, data_time: 0.381, memory: 23741, decode.loss_focal: 0.0031, decode.loss_dice: 0.6786, decode.acc_seg: 99.8530, loss: 0.6817
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.4 task/s, elapsed: 0s, ETA:    23s[                                  ] 2/78, 6.8 task/s, elapsed: 0s, ETA:    11s[>                                ] 3/78, 10.2 task/s, elapsed: 0s, ETA:     7s[>                                ] 4/78, 13.6 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 10.5 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.6 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 14.7 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 16.8 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 13.6 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.1 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 11/78, 16.6 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.1 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.3 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 16.5 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 17.6 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 16/78, 18.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 16.6 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 17.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 18.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 18.9 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 19.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.4 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 18.7 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 19.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 20.9 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.3 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.7 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 20.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.2 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.4 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.7 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.0 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 20:06:28,831 - mmseg - INFO - per class results:
-2023-11-01 20:06:28,832 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.98  | 99.94 |
-|  scratch   |  85.9 | 84.48 | 71.88 |  76.0 | 74.65 | 86.12  |   89.88   |  83.1  | 79.18 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 20:06:28,833 - mmseg - INFO - Summary:
-2023-11-01 20:06:28,833 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.65 | 88.72 | 71.32 |  73.2 | 60.32 |  93.04  |   94.91    |  73.55  | 61.45 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 20:06:28,838 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8165, mVOE: 0.8872, mASD: 0.7132, mMSSD: 0.7320, mAcc: 0.6032, mFscore: 0.9304, mPrecision: 0.9491, mRecall: 0.7355, mDice: 0.6145, IoU.background: 0.9995, IoU.scratch: 0.8590, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8448, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7188, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7600, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7465, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8612, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.8988, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8310, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7918, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 20:09:22,741 - mmseg - INFO - Iter [1550/5000]	lr: 7.446e-05, eta: 3:25:32, time: 4.585, data_time: 1.553, memory: 23741, decode.loss_focal: 0.0028, decode.loss_dice: 0.6706, decode.acc_seg: 99.8606, loss: 0.6734
-2023-11-01 20:12:12,997 - mmseg - INFO - Iter [1600/5000]	lr: 7.362e-05, eta: 3:22:15, time: 3.405, data_time: 0.368, memory: 23741, decode.loss_focal: 0.0028, decode.loss_dice: 0.6664, decode.acc_seg: 99.8656, loss: 0.6692
-2023-11-01 20:15:07,180 - mmseg - INFO - Iter [1650/5000]	lr: 7.278e-05, eta: 3:19:08, time: 3.484, data_time: 0.447, memory: 23741, decode.loss_focal: 0.0028, decode.loss_dice: 0.6731, decode.acc_seg: 99.8588, loss: 0.6759
-2023-11-01 20:17:58,690 - mmseg - INFO - Iter [1700/5000]	lr: 7.194e-05, eta: 3:15:56, time: 3.430, data_time: 0.369, memory: 23741, decode.loss_focal: 0.0027, decode.loss_dice: 0.6621, decode.acc_seg: 99.8621, loss: 0.6648
-2023-11-01 20:20:53,105 - mmseg - INFO - Iter [1750/5000]	lr: 7.109e-05, eta: 3:12:51, time: 3.488, data_time: 0.438, memory: 23741, decode.loss_focal: 0.0026, decode.loss_dice: 0.6566, decode.acc_seg: 99.8689, loss: 0.6591
-2023-11-01 20:23:43,727 - mmseg - INFO - Iter [1800/5000]	lr: 7.025e-05, eta: 3:09:40, time: 3.412, data_time: 0.375, memory: 23741, decode.loss_focal: 0.0025, decode.loss_dice: 0.6558, decode.acc_seg: 99.8685, loss: 0.6583
-2023-11-01 20:26:37,956 - mmseg - INFO - Iter [1850/5000]	lr: 6.940e-05, eta: 3:06:36, time: 3.485, data_time: 0.439, memory: 23741, decode.loss_focal: 0.0026, decode.loss_dice: 0.6640, decode.acc_seg: 99.8618, loss: 0.6666
-2023-11-01 20:29:32,309 - mmseg - INFO - Iter [1900/5000]	lr: 6.855e-05, eta: 3:03:33, time: 3.487, data_time: 0.446, memory: 23741, decode.loss_focal: 0.0024, decode.loss_dice: 0.6570, decode.acc_seg: 99.8701, loss: 0.6594
-2023-11-01 20:32:22,895 - mmseg - INFO - Iter [1950/5000]	lr: 6.770e-05, eta: 3:00:24, time: 3.412, data_time: 0.374, memory: 23741, decode.loss_focal: 0.0024, decode.loss_dice: 0.6516, decode.acc_seg: 99.8745, loss: 0.6540
-2023-11-01 20:35:18,237 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 20:35:18,237 - mmseg - INFO - Iter [2000/5000]	lr: 6.685e-05, eta: 2:57:24, time: 3.507, data_time: 0.443, memory: 23741, decode.loss_focal: 0.0023, decode.loss_dice: 0.6479, decode.acc_seg: 99.8783, loss: 0.6501
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.2 task/s, elapsed: 0s, ETA:    24s[                                  ] 2/78, 6.5 task/s, elapsed: 0s, ETA:    12s[>                                 ] 3/78, 9.7 task/s, elapsed: 0s, ETA:     8s[>                                ] 4/78, 13.0 task/s, elapsed: 0s, ETA:     6s[>>                               ] 5/78, 10.2 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.2 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 14.3 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 16.3 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 13.5 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.0 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 11/78, 16.5 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.1 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.5 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 16.7 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 17.9 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 16/78, 19.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 16.8 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 17.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 18.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 19.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 18.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.2 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 18.6 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 20.9 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.3 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 20.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.5 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.1 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.4 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.6 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 21.9 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 20:36:15,139 - mmseg - INFO - per class results:
-2023-11-01 20:36:15,140 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.98  | 99.94 |
-|  scratch   |  85.8 | 84.57 | 71.86 | 75.94 | 74.93 |  86.0  |   89.29   | 83.29  |  79.0 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 20:36:15,141 - mmseg - INFO - Summary:
-2023-11-01 20:36:15,141 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.62 | 88.75 | 71.31 | 73.17 | 60.39 |  92.98  |   94.62    |   73.6  |  61.4 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 20:36:15,146 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 20:36:15,147 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8162, mVOE: 0.8875, mASD: 0.7131, mMSSD: 0.7317, mAcc: 0.6039, mFscore: 0.9298, mPrecision: 0.9462, mRecall: 0.7360, mDice: 0.6140, IoU.background: 0.9995, IoU.scratch: 0.8580, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8457, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7186, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7594, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7493, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8600, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.8929, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8329, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7900, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 20:39:05,130 - mmseg - INFO - Iter [2050/5000]	lr: 6.599e-05, eta: 2:55:37, time: 4.538, data_time: 1.512, memory: 23741, decode.loss_focal: 0.0023, decode.loss_dice: 0.6476, decode.acc_seg: 99.8757, loss: 0.6498
-2023-11-01 20:41:59,625 - mmseg - INFO - Iter [2100/5000]	lr: 6.514e-05, eta: 2:52:33, time: 3.490, data_time: 0.447, memory: 23741, decode.loss_focal: 0.0022, decode.loss_dice: 0.6451, decode.acc_seg: 99.8797, loss: 0.6473
-2023-11-01 20:44:51,071 - mmseg - INFO - Iter [2150/5000]	lr: 6.428e-05, eta: 2:49:25, time: 3.429, data_time: 0.379, memory: 23741, decode.loss_focal: 0.0022, decode.loss_dice: 0.6440, decode.acc_seg: 99.8764, loss: 0.6462
-2023-11-01 20:47:45,482 - mmseg - INFO - Iter [2200/5000]	lr: 6.343e-05, eta: 2:46:22, time: 3.488, data_time: 0.442, memory: 23741, decode.loss_focal: 0.0020, decode.loss_dice: 0.6425, decode.acc_seg: 99.8848, loss: 0.6445
-2023-11-01 20:50:36,508 - mmseg - INFO - Iter [2250/5000]	lr: 6.257e-05, eta: 2:43:15, time: 3.421, data_time: 0.374, memory: 23741, decode.loss_focal: 0.0020, decode.loss_dice: 0.6424, decode.acc_seg: 99.8807, loss: 0.6444
-2023-11-01 20:53:31,932 - mmseg - INFO - Iter [2300/5000]	lr: 6.171e-05, eta: 2:40:14, time: 3.508, data_time: 0.450, memory: 23741, decode.loss_focal: 0.0020, decode.loss_dice: 0.6405, decode.acc_seg: 99.8842, loss: 0.6425
-2023-11-01 20:56:26,686 - mmseg - INFO - Iter [2350/5000]	lr: 6.084e-05, eta: 2:37:12, time: 3.495, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0019, decode.loss_dice: 0.6356, decode.acc_seg: 99.8900, loss: 0.6375
-2023-11-01 20:59:17,276 - mmseg - INFO - Iter [2400/5000]	lr: 5.998e-05, eta: 2:34:06, time: 3.412, data_time: 0.374, memory: 23741, decode.loss_focal: 0.0018, decode.loss_dice: 0.6362, decode.acc_seg: 99.8915, loss: 0.6380
-2023-11-01 21:02:12,289 - mmseg - INFO - Iter [2450/5000]	lr: 5.911e-05, eta: 2:31:05, time: 3.500, data_time: 0.450, memory: 23741, decode.loss_focal: 0.0018, decode.loss_dice: 0.6311, decode.acc_seg: 99.8914, loss: 0.6329
-2023-11-01 21:05:03,624 - mmseg - INFO - Iter [2500/5000]	lr: 5.825e-05, eta: 2:28:01, time: 3.427, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0018, decode.loss_dice: 0.6380, decode.acc_seg: 99.8895, loss: 0.6398
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.4 task/s, elapsed: 0s, ETA:    23s[                                  ] 2/78, 6.7 task/s, elapsed: 0s, ETA:    11s[>                                ] 3/78, 10.1 task/s, elapsed: 0s, ETA:     7s[>                                ] 4/78, 13.5 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 10.6 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.7 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 14.9 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 17.0 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 14.0 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.5 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 17.1 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.6 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.9 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 17.1 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 18.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 16/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 17.0 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 18.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 19.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 19.9 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.7 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.0 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 22.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 21.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 22.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.5 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 22.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.3 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.6 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.9 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.1 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 21:05:59,429 - mmseg - INFO - per class results:
-2023-11-01 21:05:59,430 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.76 | 70.39 | 99.98 | 99.96  |   99.93   | 99.99  | 99.94 |
-|  scratch   | 84.75 | 85.62 | 72.09 | 77.08 | 69.83 | 84.59  |   91.57   | 79.88  | 76.89 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 21:05:59,430 - mmseg - INFO - Summary:
-2023-11-01 21:05:59,430 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.36 | 89.01 | 71.42 | 73.73 | 59.12 |  92.28  |   95.75    |  72.75  | 60.87 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 21:05:59,433 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8136, mVOE: 0.8901, mASD: 0.7142, mMSSD: 0.7373, mAcc: 0.5912, mFscore: 0.9228, mPrecision: 0.9575, mRecall: 0.7275, mDice: 0.6087, IoU.background: 0.9995, IoU.scratch: 0.8475, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8562, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7076, ASD.scratch: 0.7209, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7708, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.6983, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8459, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9993, Precision.scratch: 0.9157, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9999, Recall.scratch: 0.7988, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7689, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 21:08:53,717 - mmseg - INFO - Iter [2550/5000]	lr: 5.738e-05, eta: 2:25:54, time: 4.602, data_time: 1.563, memory: 23741, decode.loss_focal: 0.0017, decode.loss_dice: 0.6347, decode.acc_seg: 99.8931, loss: 0.6364
-2023-11-01 21:11:45,088 - mmseg - INFO - Iter [2600/5000]	lr: 5.651e-05, eta: 2:22:48, time: 3.427, data_time: 0.372, memory: 23741, decode.loss_focal: 0.0017, decode.loss_dice: 0.6298, decode.acc_seg: 99.8949, loss: 0.6315
-2023-11-01 21:14:39,756 - mmseg - INFO - Iter [2650/5000]	lr: 5.563e-05, eta: 2:19:46, time: 3.493, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0017, decode.loss_dice: 0.6299, decode.acc_seg: 99.8960, loss: 0.6316
-2023-11-01 21:17:30,775 - mmseg - INFO - Iter [2700/5000]	lr: 5.476e-05, eta: 2:16:42, time: 3.420, data_time: 0.373, memory: 23741, decode.loss_focal: 0.0016, decode.loss_dice: 0.6278, decode.acc_seg: 99.8958, loss: 0.6295
-2023-11-01 21:20:25,530 - mmseg - INFO - Iter [2750/5000]	lr: 5.388e-05, eta: 2:13:40, time: 3.495, data_time: 0.446, memory: 23741, decode.loss_focal: 0.0015, decode.loss_dice: 0.6257, decode.acc_seg: 99.8998, loss: 0.6273
-2023-11-01 21:23:20,278 - mmseg - INFO - Iter [2800/5000]	lr: 5.301e-05, eta: 2:10:39, time: 3.495, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0016, decode.loss_dice: 0.6280, decode.acc_seg: 99.8981, loss: 0.6296
-2023-11-01 21:26:11,032 - mmseg - INFO - Iter [2850/5000]	lr: 5.213e-05, eta: 2:07:36, time: 3.415, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0016, decode.loss_dice: 0.6275, decode.acc_seg: 99.8981, loss: 0.6290
-2023-11-01 21:29:06,601 - mmseg - INFO - Iter [2900/5000]	lr: 5.124e-05, eta: 2:04:36, time: 3.511, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0015, decode.loss_dice: 0.6229, decode.acc_seg: 99.9015, loss: 0.6244
-2023-11-01 21:31:58,081 - mmseg - INFO - Iter [2950/5000]	lr: 5.036e-05, eta: 2:01:33, time: 3.430, data_time: 0.369, memory: 23741, decode.loss_focal: 0.0015, decode.loss_dice: 0.6268, decode.acc_seg: 99.8978, loss: 0.6283
-2023-11-01 21:34:52,497 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 21:34:52,497 - mmseg - INFO - Iter [3000/5000]	lr: 4.947e-05, eta: 1:58:33, time: 3.488, data_time: 0.445, memory: 23741, decode.loss_focal: 0.0015, decode.loss_dice: 0.6270, decode.acc_seg: 99.8993, loss: 0.6285
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.3 task/s, elapsed: 0s, ETA:    23s[                                  ] 2/78, 6.6 task/s, elapsed: 0s, ETA:    11s[>                                 ] 3/78, 9.9 task/s, elapsed: 0s, ETA:     8s[>                                ] 4/78, 13.2 task/s, elapsed: 0s, ETA:     6s[>>                               ] 5/78, 10.3 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.4 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 14.5 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 16.6 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 13.6 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.1 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 16.6 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.1 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.6 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 16.8 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 18.0 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 16/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 16.8 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 17.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 18.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 19.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.7 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.0 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 20.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 20.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.3 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.7 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 21.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 22.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 22.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 21.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.5 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 22.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 22.2 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.4 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.7 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 22.0 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.2 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 21:35:49,985 - mmseg - INFO - per class results:
-2023-11-01 21:35:49,986 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.98  | 99.94 |
-|  scratch   | 85.47 |  84.9 | 71.92 | 76.21 |  73.7 | 85.56  |   89.46   | 82.47  | 78.34 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 21:35:49,986 - mmseg - INFO - Summary:
-2023-11-01 21:35:49,986 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.54 | 88.83 | 71.34 |  73.3 | 60.09 |  92.76  |    94.7    |  73.39  | 61.24 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 21:35:49,991 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 21:35:49,991 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8154, mVOE: 0.8883, mASD: 0.7134, mMSSD: 0.7330, mAcc: 0.6009, mFscore: 0.9276, mPrecision: 0.9470, mRecall: 0.7339, mDice: 0.6124, IoU.background: 0.9995, IoU.scratch: 0.8547, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8490, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7192, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7621, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7370, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8556, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.8946, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8247, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7834, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 21:38:40,004 - mmseg - INFO - Iter [3050/5000]	lr: 4.858e-05, eta: 1:56:07, time: 4.550, data_time: 1.525, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6239, decode.acc_seg: 99.9024, loss: 0.6253
-2023-11-01 21:41:34,680 - mmseg - INFO - Iter [3100/5000]	lr: 4.769e-05, eta: 1:53:06, time: 3.493, data_time: 0.447, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6219, decode.acc_seg: 99.9048, loss: 0.6233
-2023-11-01 21:44:26,895 - mmseg - INFO - Iter [3150/5000]	lr: 4.680e-05, eta: 1:50:04, time: 3.444, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6179, decode.acc_seg: 99.9023, loss: 0.6193
-2023-11-01 21:47:22,645 - mmseg - INFO - Iter [3200/5000]	lr: 4.590e-05, eta: 1:47:04, time: 3.515, data_time: 0.442, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6236, decode.acc_seg: 99.9044, loss: 0.6249
-2023-11-01 21:50:18,020 - mmseg - INFO - Iter [3250/5000]	lr: 4.500e-05, eta: 1:44:03, time: 3.507, data_time: 0.446, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6198, decode.acc_seg: 99.9051, loss: 0.6212
-2023-11-01 21:53:08,730 - mmseg - INFO - Iter [3300/5000]	lr: 4.410e-05, eta: 1:41:01, time: 3.414, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6189, decode.acc_seg: 99.9049, loss: 0.6203
-2023-11-01 21:56:03,122 - mmseg - INFO - Iter [3350/5000]	lr: 4.320e-05, eta: 1:38:01, time: 3.488, data_time: 0.447, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6209, decode.acc_seg: 99.9044, loss: 0.6222
-2023-11-01 21:58:53,933 - mmseg - INFO - Iter [3400/5000]	lr: 4.229e-05, eta: 1:34:59, time: 3.416, data_time: 0.381, memory: 23741, decode.loss_focal: 0.0014, decode.loss_dice: 0.6202, decode.acc_seg: 99.9012, loss: 0.6216
-2023-11-01 22:01:48,043 - mmseg - INFO - Iter [3450/5000]	lr: 4.138e-05, eta: 1:31:59, time: 3.482, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6180, decode.acc_seg: 99.9065, loss: 0.6193
-2023-11-01 22:04:39,167 - mmseg - INFO - Iter [3500/5000]	lr: 4.047e-05, eta: 1:28:58, time: 3.422, data_time: 0.382, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6191, decode.acc_seg: 99.9064, loss: 0.6204
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.5 task/s, elapsed: 0s, ETA:    22s[                                  ] 2/78, 7.0 task/s, elapsed: 0s, ETA:    11s[>                                ] 3/78, 10.5 task/s, elapsed: 0s, ETA:     7s[>                                ] 4/78, 14.1 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 10.8 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 13.0 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 15.2 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 17.3 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 14.2 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.7 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 17.3 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.9 task/s, elapsed: 1s, ETA:     3s[>>>>>                           ] 13/78, 15.9 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 17.1 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 18.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 16/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 17.0 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 18.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 19.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.9 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.8 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.0 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.3 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.7 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 22.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.2 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.5 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.7 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.0 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 22:05:36,188 - mmseg - INFO - per class results:
-2023-11-01 22:05:36,189 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.76 | 70.39 | 99.98 | 99.96  |   99.93   | 99.99  | 99.94 |
-|  scratch   | 84.99 | 85.38 |  72.0 | 76.64 |  71.8 | 84.92  |   89.91   |  81.2  | 77.38 |
-|   stain    | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 22:05:36,189 - mmseg - INFO - Summary:
-2023-11-01 22:05:36,189 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 81.42 | 88.95 | 71.38 | 73.52 | 59.61 |  92.44  |   94.92    |  73.07  |  61.0 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 22:05:36,194 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8142, mVOE: 0.8895, mASD: 0.7138, mMSSD: 0.7352, mAcc: 0.5961, mFscore: 0.9244, mPrecision: 0.9492, mRecall: 0.7307, mDice: 0.6100, IoU.background: 0.9995, IoU.scratch: 0.8499, IoU.stain: 0.7037, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8538, VOE.stain: 1.0000, VOE.edgeDamage: 1.0000, ASD.background: 0.7076, ASD.scratch: 0.7200, ASD.stain: nan, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7664, MSSD.stain: nan, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7180, Acc.stain: 0.3333, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8492, Fscore.stain: nan, Fscore.edgeDamage: nan, Precision.background: 0.9993, Precision.scratch: 0.8991, Precision.stain: nan, Precision.edgeDamage: nan, Recall.background: 0.9999, Recall.scratch: 0.8120, Recall.stain: 0.5556, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7738, Dice.stain: 0.3333, Dice.edgeDamage: 0.3333
-2023-11-01 22:08:29,716 - mmseg - INFO - Iter [3550/5000]	lr: 3.956e-05, eta: 1:26:22, time: 4.611, data_time: 1.589, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6167, decode.acc_seg: 99.9099, loss: 0.6179
-2023-11-01 22:11:20,191 - mmseg - INFO - Iter [3600/5000]	lr: 3.864e-05, eta: 1:23:20, time: 3.409, data_time: 0.372, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6178, decode.acc_seg: 99.9074, loss: 0.6191
-2023-11-01 22:14:14,142 - mmseg - INFO - Iter [3650/5000]	lr: 3.772e-05, eta: 1:20:20, time: 3.479, data_time: 0.448, memory: 23741, decode.loss_focal: 0.0013, decode.loss_dice: 0.6162, decode.acc_seg: 99.9051, loss: 0.6174
-2023-11-01 22:17:08,139 - mmseg - INFO - Iter [3700/5000]	lr: 3.679e-05, eta: 1:17:19, time: 3.480, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6147, decode.acc_seg: 99.9105, loss: 0.6159
-2023-11-01 22:19:58,739 - mmseg - INFO - Iter [3750/5000]	lr: 3.586e-05, eta: 1:14:18, time: 3.412, data_time: 0.367, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6120, decode.acc_seg: 99.9116, loss: 0.6132
-2023-11-01 22:22:53,834 - mmseg - INFO - Iter [3800/5000]	lr: 3.493e-05, eta: 1:11:19, time: 3.502, data_time: 0.443, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6118, decode.acc_seg: 99.9116, loss: 0.6130
-2023-11-01 22:25:45,579 - mmseg - INFO - Iter [3850/5000]	lr: 3.400e-05, eta: 1:08:19, time: 3.435, data_time: 0.377, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6134, decode.acc_seg: 99.9107, loss: 0.6146
-2023-11-01 22:28:40,442 - mmseg - INFO - Iter [3900/5000]	lr: 3.306e-05, eta: 1:05:20, time: 3.497, data_time: 0.457, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6133, decode.acc_seg: 99.9124, loss: 0.6145
-2023-11-01 22:31:31,648 - mmseg - INFO - Iter [3950/5000]	lr: 3.211e-05, eta: 1:02:19, time: 3.424, data_time: 0.370, memory: 23741, decode.loss_focal: 0.0012, decode.loss_dice: 0.6115, decode.acc_seg: 99.9136, loss: 0.6126
-2023-11-01 22:34:26,637 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 22:34:26,637 - mmseg - INFO - Iter [4000/5000]	lr: 3.116e-05, eta: 0:59:21, time: 3.500, data_time: 0.454, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6106, decode.acc_seg: 99.9162, loss: 0.6118
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.4 task/s, elapsed: 0s, ETA:    23s[                                  ] 2/78, 6.8 task/s, elapsed: 0s, ETA:    11s[>                                ] 3/78, 10.2 task/s, elapsed: 0s, ETA:     7s[>                                ] 4/78, 13.7 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 10.7 task/s, elapsed: 0s, ETA:     7s[>>                               ] 6/78, 12.9 task/s, elapsed: 0s, ETA:     6s[>>                               ] 7/78, 15.0 task/s, elapsed: 0s, ETA:     5s[>>>                              ] 8/78, 17.1 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 14.0 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 15.6 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 17.2 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 18.7 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.9 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 17.1 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 18.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 16/78, 19.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 17.1 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 18.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 19.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 20.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.9 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.6 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 20.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.8 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.0 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 22.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.2 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.5 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.8 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.0 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 22:35:26,143 - mmseg - INFO - per class results:
-2023-11-01 22:35:26,144 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.99  | 99.94 |
-|  scratch   | 85.24 | 85.13 | 71.98 | 76.54 | 72.24 | 85.26  |   90.32   | 81.49  |  77.9 |
-|   stain    | 81.82 | 88.55 | 72.53 | 79.27 | 59.97 | 80.32  |    96.5   | 73.31  | 70.49 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 22:35:26,144 - mmseg - INFO - Summary:
-2023-11-01 22:35:26,145 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 84.35 | 86.02 | 71.76 |  75.4 | 66.38 |  88.52  |   95.59    |  77.59  | 70.42 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 22:35:26,148 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 22:35:26,149 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8435, mVOE: 0.8602, mASD: 0.7176, mMSSD: 0.7540, mAcc: 0.6638, mFscore: 0.8852, mPrecision: 0.9559, mRecall: 0.7759, mDice: 0.7042, IoU.background: 0.9995, IoU.scratch: 0.8524, IoU.stain: 0.8182, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8513, VOE.stain: 0.8855, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7198, ASD.stain: 0.7253, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7654, MSSD.stain: 0.7927, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7224, Acc.stain: 0.5997, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8526, Fscore.stain: 0.8032, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.9032, Precision.stain: 0.9650, Precision.edgeDamage: nan, Recall.background: 0.9999, Recall.scratch: 0.8149, Recall.stain: 0.7331, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7790, Dice.stain: 0.7049, Dice.edgeDamage: 0.3333
-2023-11-01 22:38:16,643 - mmseg - INFO - Iter [4050/5000]	lr: 3.021e-05, eta: 0:56:35, time: 4.600, data_time: 1.571, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6105, decode.acc_seg: 99.9392, loss: 0.6116
-2023-11-01 22:41:11,474 - mmseg - INFO - Iter [4100/5000]	lr: 2.925e-05, eta: 0:53:35, time: 3.497, data_time: 0.450, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6083, decode.acc_seg: 99.9419, loss: 0.6094
-2023-11-01 22:44:06,530 - mmseg - INFO - Iter [4150/5000]	lr: 2.829e-05, eta: 0:50:36, time: 3.501, data_time: 0.451, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6101, decode.acc_seg: 99.9389, loss: 0.6113
-2023-11-01 22:46:58,147 - mmseg - INFO - Iter [4200/5000]	lr: 2.732e-05, eta: 0:47:36, time: 3.432, data_time: 0.376, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6066, decode.acc_seg: 99.9415, loss: 0.6077
-2023-11-01 22:49:53,559 - mmseg - INFO - Iter [4250/5000]	lr: 2.634e-05, eta: 0:44:37, time: 3.508, data_time: 0.452, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6108, decode.acc_seg: 99.9416, loss: 0.6119
-2023-11-01 22:52:44,935 - mmseg - INFO - Iter [4300/5000]	lr: 2.536e-05, eta: 0:41:37, time: 3.427, data_time: 0.374, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6077, decode.acc_seg: 99.9418, loss: 0.6088
-2023-11-01 22:55:40,785 - mmseg - INFO - Iter [4350/5000]	lr: 2.437e-05, eta: 0:38:38, time: 3.517, data_time: 0.450, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6091, decode.acc_seg: 99.9414, loss: 0.6102
-2023-11-01 22:58:32,655 - mmseg - INFO - Iter [4400/5000]	lr: 2.337e-05, eta: 0:35:39, time: 3.437, data_time: 0.375, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6071, decode.acc_seg: 99.9430, loss: 0.6081
-2023-11-01 23:01:28,066 - mmseg - INFO - Iter [4450/5000]	lr: 2.237e-05, eta: 0:32:40, time: 3.508, data_time: 0.450, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6085, decode.acc_seg: 99.9427, loss: 0.6096
-2023-11-01 23:04:19,585 - mmseg - INFO - Iter [4500/5000]	lr: 2.135e-05, eta: 0:29:41, time: 3.430, data_time: 0.375, memory: 23741, decode.loss_focal: 0.0011, decode.loss_dice: 0.6077, decode.acc_seg: 99.9426, loss: 0.6087
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.0 task/s, elapsed: 0s, ETA:    25s[                                  ] 2/78, 6.1 task/s, elapsed: 0s, ETA:    13s[>                                 ] 3/78, 9.1 task/s, elapsed: 0s, ETA:     8s[>                                ] 4/78, 12.2 task/s, elapsed: 0s, ETA:     6s[>>                                ] 5/78, 9.9 task/s, elapsed: 1s, ETA:     7s[>>                               ] 6/78, 11.9 task/s, elapsed: 1s, ETA:     6s[>>                               ] 7/78, 13.9 task/s, elapsed: 1s, ETA:     5s[>>>                              ] 8/78, 15.9 task/s, elapsed: 1s, ETA:     4s[>>>                              ] 9/78, 13.2 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 14.7 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 11/78, 16.2 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 17.6 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 13/78, 15.2 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 16.3 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 17.5 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 16/78, 18.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 16.5 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 17.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 18.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 19.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 17.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 18.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 19.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 18.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 19.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.2 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 18.6 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.2 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 31/78, 19.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 19.8 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.1 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 20.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 20.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 20.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 20.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 20.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 20.5 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 20.8 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.1 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 21.4 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 20.6 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 20.9 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.2 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 21.4 task/s, elapsed: 4s, ETA:     0s
-
-2023-11-01 23:05:21,072 - mmseg - INFO - per class results:
-2023-11-01 23:05:21,073 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.98  | 99.94 |
-|  scratch   | 85.45 | 84.92 | 71.93 | 76.29 | 73.35 | 85.53  |   89.76   | 82.23  |  78.3 |
-|   stain    | 82.53 | 87.84 | 72.45 | 78.85 | 61.84 | 81.43  |   96.07   | 74.56  | 72.14 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 23:05:21,073 - mmseg - INFO - Summary:
-2023-11-01 23:05:21,074 - mmseg - INFO - 
-+-------+-------+------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU | mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 84.58 | 85.8 | 71.71 | 75.18 | 67.12 |  88.97  |   95.26    |  78.08  | 70.93 |
-+-------+-------+------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 23:05:21,078 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8458, mVOE: 0.8580, mASD: 0.7171, mMSSD: 0.7518, mAcc: 0.6712, mFscore: 0.8897, mPrecision: 0.9526, mRecall: 0.7808, mDice: 0.7093, IoU.background: 0.9995, IoU.scratch: 0.8545, IoU.stain: 0.8253, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8492, VOE.stain: 0.8784, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7193, ASD.stain: 0.7245, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7629, MSSD.stain: 0.7885, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7335, Acc.stain: 0.6184, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8553, Fscore.stain: 0.8143, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.8976, Precision.stain: 0.9607, Precision.edgeDamage: nan, Recall.background: 0.9998, Recall.scratch: 0.8223, Recall.stain: 0.7456, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7830, Dice.stain: 0.7214, Dice.edgeDamage: 0.3333
-2023-11-01 23:08:15,178 - mmseg - INFO - Iter [4550/5000]	lr: 2.033e-05, eta: 0:26:49, time: 4.712, data_time: 1.673, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6070, decode.acc_seg: 99.9441, loss: 0.6080
-2023-11-01 23:11:10,047 - mmseg - INFO - Iter [4600/5000]	lr: 1.929e-05, eta: 0:23:50, time: 3.497, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6075, decode.acc_seg: 99.9453, loss: 0.6085
-2023-11-01 23:14:00,654 - mmseg - INFO - Iter [4650/5000]	lr: 1.824e-05, eta: 0:20:50, time: 3.412, data_time: 0.368, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6029, decode.acc_seg: 99.9456, loss: 0.6039
-2023-11-01 23:16:54,865 - mmseg - INFO - Iter [4700/5000]	lr: 1.718e-05, eta: 0:17:51, time: 3.484, data_time: 0.444, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6039, decode.acc_seg: 99.9458, loss: 0.6049
-2023-11-01 23:19:44,987 - mmseg - INFO - Iter [4750/5000]	lr: 1.609e-05, eta: 0:14:52, time: 3.402, data_time: 0.369, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6023, decode.acc_seg: 99.9460, loss: 0.6033
-2023-11-01 23:22:38,990 - mmseg - INFO - Iter [4800/5000]	lr: 1.499e-05, eta: 0:11:54, time: 3.480, data_time: 0.449, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6034, decode.acc_seg: 99.9467, loss: 0.6044
-2023-11-01 23:25:29,052 - mmseg - INFO - Iter [4850/5000]	lr: 1.386e-05, eta: 0:08:55, time: 3.401, data_time: 0.365, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6037, decode.acc_seg: 99.9463, loss: 0.6047
-2023-11-01 23:28:23,419 - mmseg - INFO - Iter [4900/5000]	lr: 1.269e-05, eta: 0:05:56, time: 3.487, data_time: 0.442, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6030, decode.acc_seg: 99.9481, loss: 0.6039
-2023-11-01 23:31:14,182 - mmseg - INFO - Iter [4950/5000]	lr: 1.145e-05, eta: 0:02:58, time: 3.415, data_time: 0.371, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6044, decode.acc_seg: 99.9468, loss: 0.6054
-2023-11-01 23:34:08,058 - mmseg - INFO - Saving checkpoint at 5000 iterations
-2023-11-01 23:34:08,456 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 23:34:08,456 - mmseg - INFO - Iter [5000/5000]	lr: 1.004e-05, eta: 0:00:00, time: 3.486, data_time: 0.439, memory: 23741, decode.loss_focal: 0.0010, decode.loss_dice: 0.6026, decode.acc_seg: 99.9462, loss: 0.6036
-[                                                  ] 0/78, elapsed: 0s, ETA:[                                  ] 1/78, 3.9 task/s, elapsed: 0s, ETA:    20s[                                  ] 2/78, 7.8 task/s, elapsed: 0s, ETA:    10s[>                                ] 3/78, 11.8 task/s, elapsed: 0s, ETA:     6s[>                                ] 4/78, 15.7 task/s, elapsed: 0s, ETA:     5s[>>                               ] 5/78, 11.5 task/s, elapsed: 0s, ETA:     6s[>>                               ] 6/78, 13.8 task/s, elapsed: 0s, ETA:     5s[>>                               ] 7/78, 16.1 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 8/78, 18.4 task/s, elapsed: 0s, ETA:     4s[>>>                              ] 9/78, 14.7 task/s, elapsed: 1s, ETA:     5s[>>>>                            ] 10/78, 16.4 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 11/78, 18.0 task/s, elapsed: 1s, ETA:     4s[>>>>                            ] 12/78, 19.6 task/s, elapsed: 1s, ETA:     3s[>>>>>                           ] 13/78, 16.5 task/s, elapsed: 1s, ETA:     4s[>>>>>                           ] 14/78, 17.8 task/s, elapsed: 1s, ETA:     4s[>>>>>>                          ] 15/78, 19.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 16/78, 20.3 task/s, elapsed: 1s, ETA:     3s[>>>>>>                          ] 17/78, 17.4 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                         ] 18/78, 18.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                         ] 19/78, 19.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 20/78, 20.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>                        ] 21/78, 18.1 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 22/78, 19.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 23/78, 19.8 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>                       ] 24/78, 20.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 25/78, 18.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                      ] 26/78, 19.4 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 27/78, 20.2 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>                     ] 28/78, 20.9 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>                     ] 29/78, 19.0 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>                    ] 30/78, 19.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>                    ] 31/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 32/78, 21.0 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 33/78, 19.3 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>                   ] 34/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 35/78, 20.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>                  ] 36/78, 21.1 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 37/78, 19.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>                 ] 38/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 39/78, 20.7 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 40/78, 21.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>                ] 41/78, 19.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 42/78, 20.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>               ] 43/78, 20.9 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 44/78, 21.4 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 45/78, 20.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>              ] 46/78, 20.6 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>             ] 47/78, 21.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>             ] 48/78, 21.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 49/78, 20.4 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 50/78, 20.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>            ] 51/78, 21.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 52/78, 21.6 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>           ] 53/78, 20.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 54/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 55/78, 21.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>          ] 56/78, 21.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 57/78, 20.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>         ] 58/78, 21.0 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 59/78, 21.4 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 60/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 61/78, 20.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 62/78, 21.1 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>       ] 63/78, 21.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 64/78, 21.8 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 65/78, 20.9 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 66/78, 21.2 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 67/78, 21.6 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 68/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 69/78, 21.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>    ] 70/78, 21.3 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 71/78, 21.6 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 72/78, 21.9 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 73/78, 21.1 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 74/78, 21.4 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  ] 75/78, 21.7 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 76/78, 22.0 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ] 77/78, 21.2 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 78/78, 21.5 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 79/78, 21.8 task/s, elapsed: 4s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 80/78, 22.0 task/s, elapsed: 4s, ETA:     0s/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-
-
-2023-11-01 23:35:06,409 - mmseg - INFO - per class results:
-2023-11-01 23:35:06,410 - mmseg - INFO - 
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-|   Class    |  IoU  |  VOE  |  ASD  |  MSSD |  Acc  | Fscore | Precision | Recall |  Dice |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-| background | 99.95 | 70.42 | 70.75 | 70.39 | 99.98 | 99.96  |   99.94   | 99.99  | 99.94 |
-|  scratch   | 85.03 | 85.34 | 72.01 | 76.69 | 71.55 | 84.98  |   90.38   | 81.03  | 77.47 |
-|   stain    | 82.44 | 87.93 | 72.46 |  78.9 |  61.6 | 81.28  |   96.05   |  74.4  | 71.92 |
-| edgeDamage | 70.37 | 100.0 |  nan  |  nan  | 33.33 |  nan   |    nan    | 55.56  | 33.33 |
-+------------+-------+-------+-------+-------+-------+--------+-----------+--------+-------+
-2023-11-01 23:35:06,410 - mmseg - INFO - Summary:
-2023-11-01 23:35:06,411 - mmseg - INFO - 
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-|  aAcc |  mIoU |  mVOE |  mASD | mMSSD |  mAcc | mFscore | mPrecision | mRecall | mDice |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-| 99.95 | 84.45 | 85.92 | 71.74 | 75.33 | 66.62 |  88.74  |   95.46    |  77.74  | 70.67 |
-+-------+-------+-------+-------+-------+-------+---------+------------+---------+-------+
-2023-11-01 23:35:06,415 - mmseg - INFO - Exp name: unet_kernel_select.py
-2023-11-01 23:35:06,416 - mmseg - INFO - Iter(val) [20]	aAcc: 0.9995, mIoU: 0.8445, mVOE: 0.8592, mASD: 0.7174, mMSSD: 0.7533, mAcc: 0.6662, mFscore: 0.8874, mPrecision: 0.9546, mRecall: 0.7774, mDice: 0.7067, IoU.background: 0.9995, IoU.scratch: 0.8503, IoU.stain: 0.8244, IoU.edgeDamage: 0.7037, VOE.background: 0.7042, VOE.scratch: 0.8534, VOE.stain: 0.8793, VOE.edgeDamage: 1.0000, ASD.background: 0.7075, ASD.scratch: 0.7201, ASD.stain: 0.7246, ASD.edgeDamage: nan, MSSD.background: 0.7039, MSSD.scratch: 0.7669, MSSD.stain: 0.7890, MSSD.edgeDamage: nan, Acc.background: 0.9998, Acc.scratch: 0.7155, Acc.stain: 0.6160, Acc.edgeDamage: 0.3333, Fscore.background: 0.9996, Fscore.scratch: 0.8498, Fscore.stain: 0.8128, Fscore.edgeDamage: nan, Precision.background: 0.9994, Precision.scratch: 0.9038, Precision.stain: 0.9605, Precision.edgeDamage: nan, Recall.background: 0.9999, Recall.scratch: 0.8103, Recall.stain: 0.7440, Recall.edgeDamage: 0.5556, Dice.background: 0.9994, Dice.scratch: 0.7747, Dice.stain: 0.7192, Dice.edgeDamage: 0.3333
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/home/zhangzifan/.conda/envs/mmedit/lib/python3.8/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
